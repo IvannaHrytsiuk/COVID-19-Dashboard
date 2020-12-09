@@ -1,0 +1,31 @@
+{
+  "name": "COVID-19-Dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvannaHrytsiuk/COVID-19-Dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvannaHrytsiuk/COVID-19-Dashboard/issues"
+  },
+  "homepage": "https://github.com/IvannaHrytsiuk/COVID-19-Dashboard#readme",
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "eslint": "^7.15.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.5.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
