@@ -1,0 +1,141 @@
+.container{
+    padding: 1rem;
+    margin: 1rem;
+}
+.table-scroll{
+    display: block;
+    border-spacing: 0;
+    border: 1px solid;
+
+    thead{
+        background-color: #f1f1f1;  
+        position:relative;
+        display: block;
+        width:100%;
+        overflow-y: scroll;
+    }
+
+    tbody{
+        display: block; 
+        position:relative;
+        width:100%; overflow-y:scroll;
+        border-top: 1px solid rgba(0,0,0,0.2);
+    }
+    tr{
+        width: 100%;
+        display:flex;
+    }
+
+    td, th{
+        flex-basis:100%;
+        flex-grow:2;
+        display: block;
+        padding: 1rem;
+        text-align:left;
+    }
+} 
+.table-scroll.small-first-col td:first-child,
+.table-scroll.small-first-col th:first-child{
+    flex-basis:20%;
+    flex-grow:1;
+}
+  
+.table-scroll tbody tr:nth-child(2n){
+    background-color: rgba(130,130,170,0.1);
+}
+  
+.body-half-screen{
+    max-height: 50vh;
+}
+  
+.small-col{flex-basis:10%;}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255, 82, 82);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #363636;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #313131;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+#searchCountry {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/search.png?alt=media&token=511bbf61-1df1-4189-ae3f-ca1dacd4dc52');
+    background-position: 10px 12px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    width: 50%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+.countryList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li{
+       cursor: pointer;
+
+      img{
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+    }
+}
+  
