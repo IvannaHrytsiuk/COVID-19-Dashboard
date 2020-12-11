@@ -25,6 +25,7 @@ function paintSearch(arr) {
             document.getElementById('searchCountry').value = '';
             const table = new Table();
             table.checkSwitcher();
+            table.paintTableHeader();
         });
     }
 }
