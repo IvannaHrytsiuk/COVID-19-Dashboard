@@ -1,61 +1,110 @@
 import '../styles/style.css';
+// import 'leaflet/dist/leaflet';
+// import 'leaflet/dist/leaflet.css';
 import regeneratorRuntime from "regenerator-runtime";
+import { countryData } from './Country';
+import {
+  map, grayscale, info, legend,
+} from './constants/constants';
+import { ViewMapClass } from './View/index';
+import { ControllerClass } from './Controller/index';
+
+let cases = [];
+let countryName = [];
+let codeName = [];
+let dataAll;
+let nameCountry;
+let p;
+const countryUrl = [];
 
 async function sendCountry() {
-  const countryUrl = [];
-  let circle;
-  let popup;
-  let item = 0;
-
   try {
     const url = `https://api.covid19api.com/summary`;
     const res = await fetch(url);
     const data = await res.json();
-    const countryName = data.Countries.map((e) => e.Country);
-    const cases = data.Countries.map((e) => e.TotalConfirmed);
+    if (data.Message === '') {
+      countryName = data.Countries.map((e) => e.Country);
+      codeName = data.Countries.map((e) => e.CountryCode);
+      cases = data.Countries.map((e) => e.TotalConfirmed);
 
-    for (let i = 0; i < countryName.length; i += 1) {
-      const urlMapCenter = `https://api.mapbox.com/geocoding/v5/mapbox.places/${countryName[i]}.json?types=country&access_token=pk.eyJ1IjoibXlmZW5peDkyIiwiYSI6ImNrYXBpdXhwMTF5NTYzMXA2emY0M3pnd24ifQ.I73eBezMUvPr3OAN-aF1Cg`;
-      const resMapCenter = await fetch(urlMapCenter);
-      const dataMapCenter = await resMapCenter.json();
-      countryUrl.push(dataMapCenter.features[0].center);
+      for (let i = 0; i < countryName.length; i += 1) {
+        const urlMapCenter = `https://api.mapbox.com/geocoding/v5/mapbox.places/${countryName[i]},${codeName[i]}.json?types=country&access_token=pk.eyJ1IjoibXlmZW5peDkyIiwiYSI6ImNrYXBpdXhwMTF5NTYzMXA2emY0M3pnd24ifQ.I73eBezMUvPr3OAN-aF1Cg`;
+        const resMapCenter = await fetch(urlMapCenter);
+        const dataMapCenter = await resMapCenter.json();
+        countryUrl.push(dataMapCenter.features[0].center);
+        // доделать
+        // p = new Promise((resolve, reject) => {
+        //   resolve(fetch(urlMapCenter));
+        // });
+      }
+      // await Promise.all(Array.from(p)).then((val) => {
+      //   console.log(val);
+      // });
+      ViewMap.addCircle();
+    } else {
+      throw Error(data.Message);
     }
-
-    for (let i = 0; i < countryUrl.length; i += 1) {
-      const circleOptions = {
-        color: 'red',
-        fillColor: 'red',
-        fillOpacity: 1,
-      };
-      popup = L.popup()
-        .setLatLng(countryUrl[i].reverse())
-        .setContent(`Cases: ${cases[i]}`);
-      circle = L.circle(countryUrl[i], (Math.trunc(cases[i] / 40)), circleOptions);
-      circle.addTo(map);
-      popup.addTo(map);
-    }
-
-    document.querySelectorAll('.leaflet-popup-pane > div').forEach((e) => {
-      e.style.display = 'none';
-      // e.classList.add(`${countryName[item]}`);
-      item += 1;
-    });
   } catch (error) {
-    console.log('Rate Limit Exceeded.');
+    console.log(error);
+  } finally {
+    dataAll = Object.assign(...codeName.map((n, i) => ({ [n]: cases[i] })));
   }
 }
 
-sendCountry();
-const mapboxAccessToken = `pk.eyJ1IjoibXlmZW5peDkyIiwiYSI6ImNrYXBpdXhwMTF5NTYzMXA2emY0M3pnd24ifQ.I73eBezMUvPr3OAN-aF1Cg`;
+const ViewMap = new ViewMapClass();
 
-const grayscale = L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`, {
-  id: 'mapbox/dark-v9',
-  tileSize: 512,
-  zoomOffset: -1,
+grayscale.addTo(map);
+info.onAdd = ViewMap.addInfo;
+info.update = ViewMap.updateInfo;
+info.addTo(map);
+
+// get color depending on population density value
+// function getColor(d) {
+//   return d > 1000 ? '#800026'
+//     : d > 500 ? '#BD0026'
+//       : d > 200 ? '#E31A1C'
+//         : d > 100 ? '#FC4E2A'
+//           : d > 50 ? '#FD8D3C'
+//             : d > 20 ? '#FEB24C'
+//               : d > 10 ? '#FED976'
+//                 : '#FFEDA0';
+// }
+
+function style() {
+  return {
+    weight: 1,
+    opacity: 1,
+    color: '#666',
+    dashArray: '',
+    fillColor: '#555',
+  };
+}
+
+function onEachFeature(feature, layer) {
+  layer.on({
+    mouseover: ViewMap.highlightFeature,
+    mouseout: ControllerClass.resetHighlight,
+    click: (e) => {
+      const layers = e.target;
+      nameCountry = layers.feature.properties.name;
+    },
+  //  click: zoomToFeature,
+  });
+}
+
+const geojson = L.geoJson(countryData, {
+  style,
+  onEachFeature,
+}).addTo(map);
+
+legend.onAdd = ViewMap.addLegend;
+legend.addTo(map);
+
+document.addEventListener('DOMContentLoaded', () => {
+  ViewMap.init();
+  sendCountry();
 });
 
-const map = L.map('map', {
-  center: [52.4345, 30.9754],
-  zoom: 3,
-  layers: grayscale,
-});
+export {
+  dataAll, geojson, countryUrl, cases,
+};
