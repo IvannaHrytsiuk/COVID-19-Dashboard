@@ -4,41 +4,55 @@ import 'leaflet/dist/leaflet.css';
 import {
   map, grayscale, info, legend,
 } from '../constants/constants';
-import {
-  dataAll, geojson, countryUrl, cases,
-} from '../index';
+import { dataAll } from '../Store';
 
 export const ViewMapClass = class {
+  constructor() {
+    this.nameCountryHover = '';
+  }
+
   init() {
     grayscale.addTo(map);
     info.addTo(map);
     legend.addTo(map);
+    info.update = this.updateInfo;
   }
 
   addCircle() {
-    for (this.i = 0; this.i < countryUrl.length; this.i += 1) {
-      const circleOptions = {
+    for (this.i = 0; this.i < dataAll.Countries.length; this.i += 1) {
+      this.circleOptions = {
         color: 'red',
         fillColor: 'red',
         fillOpacity: 1,
       };
-      const circle = L.circle(countryUrl[this.i].reverse(), (Math.trunc(
-        cases[this.i] / 40,
-      )), circleOptions);
-      circle.addTo(map);
+      this.circle = L.circle(dataAll.Countries[this.i].centerCountry.reverse(), (Math.trunc(
+        dataAll.Countries[this.i].TotalConfirmed / 40,
+      )), this.circleOptions);
+      this.circle.addTo(map);
     }
   }
 
   addInfo() {
     this.div = L.DomUtil.create('div', 'info');
-    this.update();
+    this.div.innerHTML = '<h4>Statistic</h4> <br /> Hover over a country';
     return this.div;
   }
 
   updateInfo(props) {
-    this.div.innerHTML = `<h4>Statistic</h4>${props
-      ? `<b class="name_country">${props.name}</b><br />${typeof (dataAll[props.id]) === 'number' ? dataAll[props.id] : 'No data'} cases`
-      : 'Hover over a country'}`;
+    if (props != undefined) {
+      dataAll.Countries.forEach((e) => {
+        if (props.id === e.CountryCode) {
+          this.nameCountryHover = e.TotalConfirmed;
+        }
+      });
+
+      this.div.innerHTML = `<h4>Statistic</h4>${props
+        ? `<b class="name_country">${props.name}</b><br />${typeof (this.nameCountryHover) === 'number' ? this.nameCountryHover : 'No data'} cases`
+        : 'Hover over a country'}`;
+    } else {
+      this.div.innerHTML = `<h4>Statistic</h4><br />Hover over a country`;
+    }
+    this.nameCountryHover = '';
   }
 
   static style() {
@@ -63,7 +77,6 @@ export const ViewMapClass = class {
       this.layer.bringToFront();
     }
     info.update(this.layer.feature.properties);
-    // console.log(this.layer.feature.properties.name);
   }
 
   addLegend() {
