@@ -2,34 +2,39 @@
 import 'leaflet/dist/leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
-  map, grayscale, info, legend,
-} from '../constants/constants';
+  map, grayscale, info, legend, Model,
+} from '../constants/index';
 import { dataAll } from '../Store';
 
 export const ViewMapClass = class {
   constructor() {
     this.nameCountryHover = '';
+    this.locationCircle = L.circle();
   }
 
   init() {
     grayscale.addTo(map);
     info.addTo(map);
     legend.addTo(map);
+    legend.onAdd = this.addLegend;
     info.update = this.updateInfo;
   }
 
-  addCircle() {
+  addCircle(name, color, size) {
+    document.querySelectorAll(`path[stroke="${this.stroke}"]`).forEach(e => e.remove());
+    this.circleOptions = {
+      color,
+      fillColor: color,
+      fillOpacity: 1,
+    };
     for (this.i = 0; this.i < dataAll.Countries.length; this.i += 1) {
-      this.circleOptions = {
-        color: 'red',
-        fillColor: 'red',
-        fillOpacity: 1,
-      };
-      this.circle = L.circle(dataAll.Countries[this.i].centerCountry.reverse(), (Math.trunc(
-        dataAll.Countries[this.i].TotalConfirmed / 40,
-      )), this.circleOptions);
-      this.circle.addTo(map);
+      this.location = L.circle(dataAll.Countries[this.i].centerCountry,
+        (Math.ceil(
+          dataAll.Countries[this.i][name] / size,
+        )), this.circleOptions);
+      this.location.addTo(map);
     }
+    this.stroke = document.querySelectorAll('path')[document.querySelectorAll('path').length - 1].getAttribute('stroke');
   }
 
   addInfo() {
@@ -42,10 +47,9 @@ export const ViewMapClass = class {
     if (props != undefined) {
       dataAll.Countries.forEach((e) => {
         if (props.id === e.CountryCode) {
-          this.nameCountryHover = e.TotalConfirmed;
+          this.nameCountryHover = e[Model.changeColorCircle()];
         }
       });
-
       this.div.innerHTML = `<h4>Statistic</h4>${props
         ? `<b class="name_country">${props.name}</b><br />${typeof (this.nameCountryHover) === 'number' ? this.nameCountryHover : 'No data'} cases`
         : 'Hover over a country'}`;
@@ -61,7 +65,6 @@ export const ViewMapClass = class {
       opacity: 1,
       color: '#666',
       dashArray: '',
-      //  fillOpacity: 0.7,
       fillColor: '#555',
     };
   }
