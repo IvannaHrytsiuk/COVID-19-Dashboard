@@ -16,7 +16,7 @@ export const StoreClass = class {
           this.urlMapCenter = `https://api.mapbox.com/geocoding/v5/mapbox.places/${dataAll.Countries[i].Country},${dataAll.Countries[i].CountryCode}.json?types=country&access_token=pk.eyJ1IjoibXlmZW5peDkyIiwiYSI6ImNrYXBpdXhwMTF5NTYzMXA2emY0M3pnd24ifQ.I73eBezMUvPr3OAN-aF1Cg`;
           this.resMapCenter = await fetch(this.urlMapCenter);
           this.dataMapCenter = await this.resMapCenter.json();
-          dataAll.Countries[i].centerCountry = this.dataMapCenter.features[0].center;
+          dataAll.Countries[i].centerCountry = this.dataMapCenter.features[0].center.reverse();
           // доделать
           // p = new Promise((resolve, reject) => {
           //   resolve(fetch(urlMapCenter));
