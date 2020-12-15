@@ -1,18 +1,12 @@
 import '../styles/style.css';
-// import 'leaflet/dist/leaflet';
-// import 'leaflet/dist/leaflet.css';
 import regeneratorRuntime from "regenerator-runtime";
 import { countryData } from './Country';
 import {
-  map, grayscale, info, legend,
-} from './constants/constants';
-import { ViewMapClass } from './View/index';
+  map, grayscale, info, legend, Store, ViewMap, Model,
+} from './constants/index';
 import { ControllerClass } from './Controller/index';
-import { StoreClass } from './Store';
 
 let nameCountry;
-const Store = new StoreClass();
-const ViewMap = new ViewMapClass();
 
 grayscale.addTo(map);
 info.onAdd = ViewMap.addInfo;
@@ -64,10 +58,14 @@ legend.addTo(map);
 // //  Store.sendCountry()
 // })
 
+document.querySelector('#chooseOptions').addEventListener('change', Model.changeColorCircle);
+
 document.addEventListener('DOMContentLoaded', () => {
   Store.sendCountry();
   ViewMap.init();
-  setTimeout(ViewMap.addCircle, 1000);
+  setTimeout(() => {
+    ViewMap.addCircle('TotalConfirmed', 'red', 40);
+  }, 1000);
 });
 
-export { geojson };
+export { geojson, ViewMap, Model };
