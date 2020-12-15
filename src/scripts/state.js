@@ -8,7 +8,11 @@ export const StateClass = class {
             this.url = 'https://api.covid19api.com/summary';
             this.res = await fetch(this.url);
             this.data = await this.res.json();
-            covidData = this.data;
+            if (this.data.Message === '') {
+                covidData = this.data;
+            } else {
+                throw Error(this.data.Message);
+            }
         } catch (error) {
             console.log(error);
         }

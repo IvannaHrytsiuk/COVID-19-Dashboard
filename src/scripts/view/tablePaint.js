@@ -19,22 +19,24 @@ export class Table {
     // eslint-disable-next-line class-methods-use-this
     paintTableHeader() {
         document.querySelector('thead').innerHTML = '';
-        if (sessionStorage.getItem('country')) {
-            document.querySelector('thead').innerHTML = '<tr><th>Cases/Per 100K Population</th><th>Death/Per 100K Population</th><th>Recovered/Per 100K Population</th></tr>';
-        } else {
-            document.querySelector('thead').innerHTML = '<tr><th>Cases</th><th>Death</th><th>Recovered</th></tr>';
-        }
+        document.querySelector('thead').innerHTML = '<tr><th>Cases</th><th>Death</th><th>Recovered</th></tr>';
     }
 
     // eslint-disable-next-line class-methods-use-this
-    paintTableTotalCountry(cases, death, recovered, cases100, death100, recovered100) {
+    paintTableTotalCountry(cases, death, recovered) {
         document.querySelector('tbody').innerHTML = '';
-        document.querySelector('tbody').innerHTML += `<tr> <th>${cases} / ${cases100}</th><th>${death} / ${death100}</th><th>${recovered} / ${recovered100}</th></tr>`;
+        document.querySelector('tbody').innerHTML += `<tr> <th>${cases}</th><th>${death}</th><th>${recovered}</th></tr>`;
     }
 
     // eslint-disable-next-line class-methods-use-this
     paintTableTotal(cases, death, recovered) {
         document.querySelector('tbody').innerHTML = '';
         document.querySelector('tbody').innerHTML += `<tr> <th>${cases}</th><th>${death}</th><th>${recovered}</th></tr>`;
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    paintTable100(cases100, death100, recovered100) {
+        document.querySelector('tbody').innerHTML = '';
+        document.querySelector('tbody').innerHTML += `<tr> <th>${cases100}</th><th>${death100}</th><th>${recovered100}</th></tr>`;
     }
 }
