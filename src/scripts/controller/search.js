@@ -1,14 +1,8 @@
-import { getFlags } from './apis/apiFlags';
-import { Table } from './tablePaint';
+import { countriesData } from '../state';
+import { Table } from '../view/tablePaint';
 
-let mainArr;
-
-document.getElementById('searchCountry').addEventListener('focus', () => {
-    getFlags('https://restcountries.eu/rest/v2/all?fields=name;population;flag').then((data) => {
-        mainArr = data;
-        // eslint-disable-next-line no-use-before-define
-        paintSearch(data);
-    });
+document.querySelector('.searchCountry').addEventListener('focus', () => {
+    paintSearch(countriesData);
 });
 
 function paintSearch(arr) {
@@ -22,7 +16,7 @@ function paintSearch(arr) {
             // eslint-disable-next-line no-use-before-define
             rememberCountry(e.target.textContent);
             document.querySelector('.countryList').innerHTML = '';
-            document.getElementById('searchCountry').value = '';
+            document.querySelector('.searchCountry').value = '';
             const table = new Table();
             table.checkSwitcher();
             table.paintTableHeader();
@@ -30,13 +24,13 @@ function paintSearch(arr) {
     }
 }
 
-document.getElementById('searchCountry').addEventListener('keyup', (e) => {
+document.querySelector('.searchCountry').addEventListener('keyup', (e) => {
     // eslint-disable-next-line prefer-destructuring
     const value = e.target.value.toUpperCase();
     const newArr = [];
-    for (let i = 0; i < mainArr.length; i += 1) {
-        if (mainArr[i].name.toUpperCase().indexOf(value) > -1) {
-            newArr.push(mainArr[i]);
+    for (let i = 0; i < countriesData.length; i += 1) {
+        if (countriesData[i].name.toUpperCase().indexOf(value) > -1) {
+            newArr.push(countriesData[i]);
         }
     }
     paintSearch(newArr);

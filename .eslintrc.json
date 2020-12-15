@@ -14,6 +14,9 @@
         "linebreak-style":"off",
         "indent": ["error", 4],
         "import/no-cycle": "off",
-        "max-len":"off"
+        "max-len":"off",
+
+        "no-use-before-define":"off",
+        "no-shadow":"off"
     }
 }

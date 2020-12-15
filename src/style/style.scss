@@ -52,7 +52,7 @@
     background-color: rgba(130,130,170,0.1);
 }
 
-#searchCountry {
+.searchCountry {
     background-image: url('https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/search.png?alt=media&token=511bbf61-1df1-4189-ae3f-ca1dacd4dc52');
     background-position: 10px 12px;
     background-size: 20px;
@@ -78,4 +78,26 @@
       }
     }
 }
-  
+.searchCountryBlock {
+    width: 300px;
+    height: 400px;
+
+    .searchCountryTable{
+        width: 100%;
+        outline: none;
+        height: 30px;
+        font-size: 16px;
+    }
+    div{
+        overflow-x: scroll;
+        width: 300px;
+        height: 370px;
+    }
+}
+.countryTable {
+    width: 100%;
+    height: 350px;
+}
+.countryTable tbody{
+    
+}
