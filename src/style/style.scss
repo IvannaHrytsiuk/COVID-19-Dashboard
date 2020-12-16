@@ -101,3 +101,26 @@
 #selectMoodShow{
     display: none;
 }
+.error{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+.errortextBlock {
+    width: 40%;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    text-align: center;
+
+    h2{
+        color:tomato;
+        height: 50px;
+    }
+    p{
+        color:white;
+    }
+}

@@ -1,10 +1,10 @@
-import { Table } from './view/tablePaint';
-import { CountryTable } from './view/countryTable';
+import { Table } from './table1/view/tablePaint';
+import { CountryTable } from './table2/view/countryTable';
 import { StateClass } from './state';
 
-import './controller/search';
+import './general/search';
 import './keyBoard';
-import './controller/table';
+import './table1/controller/table';
 
 const State = new StateClass();
 const countryTable = new CountryTable();

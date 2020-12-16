@@ -1,5 +1,5 @@
 import { countriesData } from '../state';
-import { Table } from '../view/tablePaint';
+import { Table } from '../table1/view/tablePaint';
 
 document.querySelector('.searchCountry').addEventListener('focus', () => {
     paintSearch(countriesData);

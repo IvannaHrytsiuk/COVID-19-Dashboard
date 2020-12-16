@@ -1,4 +1,4 @@
-import { covidData } from '../state';
+import { covidData } from '../../state';
 
 // eslint-disable-next-line import/prefer-default-export
 export class CountryTable {

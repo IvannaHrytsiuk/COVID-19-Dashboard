@@ -7,7 +7,6 @@
 </head>
 <body>
     <input type="text" class="searchCountry" placeholder="Search country">
-    <!-- /*onkeyup="myFunction()" -->
     <ul class="countryList">
 
     </ul>
@@ -27,9 +26,22 @@
     </div>
     <div class="countryBlock">
         <div class="searchCountryBlock">
+            <label for="" id="forKeyboard"><img src="https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/icons8-keyboard-48.png?alt=media&token=61a8e10d-2a7f-4987-92f5-25930be0c32d" alt=""></label>
             <input type="text" class="searchCountryTable" placeholder="Search country">
             <div>
                 <table class="countryTable">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>
+                                <select name="chooseView" id="chooseView">
+                                    <option value="">Confirmed</option>
+                                    <option value="">Death</option>
+                                    <option value="">Recovered</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>
                     <tbody class="countryTbody">
                         
                     </tbody>

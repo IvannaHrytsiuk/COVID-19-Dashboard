@@ -1,4 +1,4 @@
-import { TableMood } from './tableMood';
+import { TableMood } from '../controller/tableMood';
 
 // eslint-disable-next-line import/prefer-default-export
 export class Table {
