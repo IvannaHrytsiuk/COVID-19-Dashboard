@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { geojson } from '../index';
+import { geojson } from '../../index';
 import { info } from '../constants/index';
 
 export const ControllerClass = class {

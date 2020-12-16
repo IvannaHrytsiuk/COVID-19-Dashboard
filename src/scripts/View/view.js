@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import {
   map, grayscale, info, legend, Model,
 } from '../constants/index';
-import { dataAll } from '../state';
+import { dataAll } from '../../state';
 
 export const ViewMapClass = class {
   constructor() {
