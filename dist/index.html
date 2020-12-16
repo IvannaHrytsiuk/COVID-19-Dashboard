@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="searchCountry" placeholder="Search country">
+    <ul class="countryList">
+
+    </ul>
+    <div class="container">
+        <div class="tableBlock">
+            <select name="selectMoodShow" id="selectMoodShow">
+                <option id="total">Total</option>
+                <option id="per100">Per 100K population</option>
+              </select>
+            <img class="switcher" src="https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/icons8-arrow-48.png?alt=media&token=bfafe1da-bd8c-4338-865f-027ff80fc3a8" alt="">
+            <table class="table-scroll">
+                <thead>
+                </thead>
+                <tbody class="body-half-screen"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="countryBlock">
+        <div class="searchCountryBlock">
+            <label for="" id="forKeyboard"><img src="https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/icons8-keyboard-48.png?alt=media&token=61a8e10d-2a7f-4987-92f5-25930be0c32d" alt=""></label>
+            <input type="text" class="searchCountryTable" placeholder="Search country">
+            <div>
+                <table class="countryTable">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>
+                                <select name="chooseView" id="chooseView">
+                                    <option value="">Confirmed</option>
+                                    <option value="">Death</option>
+                                    <option value="">Recovered</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="countryTbody">
+                        
+                    </tbody>
+                </table>
+            </div>
+           
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
