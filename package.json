@@ -1,24 +1,14 @@
 {
-  "name": "COVID-19-Dashboard",
-  "version": "1.0.0",
-  "description": "",
+  "name": "covid-2019-dashboard",
+  "version": "2.0.0",
   "main": "index.js",
+  "author": "Yana Korneykova <bloom.hog@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "dev": "cross-env NODE_ENV=development webpack --config config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IvannaHrytsiuk/COVID-19-Dashboard.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/IvannaHrytsiuk/COVID-19-Dashboard/issues"
-  },
-  "homepage": "https://github.com/IvannaHrytsiuk/COVID-19-Dashboard#readme",
   "devDependencies": {
     "css-loader": "^5.0.1",
     "eslint": "^7.15.0",
