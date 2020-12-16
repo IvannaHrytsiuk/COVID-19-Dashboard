@@ -1,4 +1,4 @@
-import '../styles/style.css';
+import '../style/style.css';
 import regeneratorRuntime from "regenerator-runtime";
 import { countryData } from './constants/Country';
 import { map, Store, ViewMap, Model, } from './constants/index';
