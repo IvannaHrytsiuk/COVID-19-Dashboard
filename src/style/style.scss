@@ -1,0 +1,126 @@
+.container{
+    padding: 1rem;
+    margin: 1rem;
+}
+.tableBlock{
+  width: 500px;
+  position: relative;
+
+  img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    cursor: pointer;
+  }
+}
+.table-scroll{
+    display: block;
+    border-spacing: 0;
+    border: 1px solid;
+    width: 100%;
+
+    thead{
+        background-color: #f1f1f1;  
+        position:relative;
+        display: block;
+        width:100%;
+    }
+
+    tbody{
+        display: block; 
+        position:relative;
+        width:100%;
+        border-top: 1px solid rgba(0,0,0,0.2);
+    }
+    tr{
+        width: 100%;
+        display:flex;
+    }
+
+    td, th{
+        flex-basis:100%;
+        flex-grow:2;
+        display: block;
+        padding: 1rem;
+        text-align:left;
+    }
+} 
+.table-scroll tbody tr:nth-child(2n){
+    background-color: rgba(130,130,170,0.1);
+}
+
+.searchCountry {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/search.png?alt=media&token=511bbf61-1df1-4189-ae3f-ca1dacd4dc52');
+    background-position: 10px 12px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    width: 50%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+.countryList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li{
+       cursor: pointer;
+
+      img{
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+    }
+}
+.searchCountryBlock {
+    width: 300px;
+    height: 400px;
+
+    .searchCountryTable{
+        width: 100%;
+        outline: none;
+        height: 30px;
+        font-size: 16px;
+    }
+    div{
+        overflow-x: scroll;
+        width: 300px;
+        height: 370px;
+    }
+}
+.countryTable {
+    width: 100%;
+    height: 350px;
+}
+#selectMoodShow{
+    display: none;
+}
+.error{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+.errortextBlock {
+    width: 40%;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    text-align: center;
+
+    h2{
+        color:tomato;
+        height: 50px;
+    }
+    p{
+        color:white;
+    }
+}
