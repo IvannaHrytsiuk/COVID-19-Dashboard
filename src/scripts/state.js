@@ -1,9 +1,11 @@
+/* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-await-in-loop */
 import regeneratorRuntime from 'regenerator-runtime';
-// eslint-disable-next-line import/no-mutable-exports
 export let covidData;
-// eslint-disable-next-line import/no-mutable-exports
 export let countriesData;
+export let allDayCases;
+export let allDaydDeaths;
+export let allDayRecovered;
 export const StateClass = class {
     async getCovidData() {
         try {
@@ -39,6 +41,19 @@ export const StateClass = class {
             this.res = await fetch(this.url);
             this.data = await this.res.json();
             countriesData = this.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getEveryDayData() {
+        try {
+            this.url = `https://disease.sh/v3/covid-19/historical/all?lastdays=366`;
+            this.res = await fetch(this.url);
+            this.data = await this.res.json();
+            allDayCases = this.data.cases;
+            allDaydDeaths = this.data.deaths;
+            allDayRecovered = this.data.recovered;
         } catch (error) {
             console.log(error);
         }
