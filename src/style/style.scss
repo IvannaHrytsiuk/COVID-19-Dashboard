@@ -1,5 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: grid;
+  margin: 10px;
+  grid-template-areas: 
+  "country map tbl"
+  "country map graphic";
+  grid-template-rows: min-content;
+  justify-content: space-between;
+}
+
+.container {
+  grid-area: tbl;
+}
+
+.countryBlock {
+  grid-area: country;
+}
+
+.map_block {
+  grid-area: map;
+}
+
+.graphic_block {
+  grid-area: graphic;
+}
+
 #map {
-  width: 1200px;
+  width: 1000px;
   height: 700px;
   margin: 0 auto;
 }
@@ -24,8 +55,6 @@
 }
 
 .legend i { 
-  // width: 18px; 
-  // height: 18px;
   border-radius: 50%;
   float: left; 
   margin-right: 8px; 
@@ -33,7 +62,7 @@
   background-color: red;
 }
 
-div > select {
+.tumblers {
   margin: 20px;
 }
 
@@ -91,6 +120,10 @@ div > select {
     background-color: rgba(130,130,170,0.1);
 }
 
+.inputBlock {
+  position: relative;
+}
+
 .searchCountry {
     background-image: url('https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/search.png?alt=media&token=511bbf61-1df1-4189-ae3f-ca1dacd4dc52');
     background-position: 10px 12px;
@@ -103,9 +136,11 @@ div > select {
     margin-bottom: 12px;
 }
 .countryList {
+  position: absolute;
     list-style-type: none;
     padding: 0;
     margin: 0;
+    background-color: gray;
 
     li{
        cursor: pointer;

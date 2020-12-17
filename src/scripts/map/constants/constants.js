@@ -1,11 +1,9 @@
 import 'leaflet/dist/leaflet';
 import 'leaflet/dist/leaflet.css';
-import { StoreClass } from '../state';
 import { ModelClass } from '../Model/index';
 import { ViewMapClass } from '../View/index';
 import { ControllerClass } from '../Controller/index';
 
-const Store = new StoreClass();
 const ViewMap = new ViewMapClass();
 const Model = new ModelClass();
 const Controller = new ControllerClass();
@@ -24,5 +22,5 @@ const info = L.control();
 const legend = L.control({ position: 'bottomright' });
 
 export {
-  map, grayscale, info, legend, Store, ViewMap, Model, Controller,
+  map, grayscale, info, legend, ViewMap, Model, Controller,
 };
