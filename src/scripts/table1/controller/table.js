@@ -1,12 +1,7 @@
-import { Table } from '../view/tablePaint';
 import { TableControll } from '../model/tableControll';
 
-const table = new Table();
-document.querySelector('.switcher').addEventListener('click', () => {
-    table.checkSwitcher();
-});
-
-document.getElementById('selectMoodShow').addEventListener('click', () => {
+document.getElementById('selectMoodShow').addEventListener('change', () => {
     const tableControll = new TableControll();
+    console.log(document.getElementById('selectMoodShow').value);
     tableControll.getMoodTable(document.getElementById('selectMoodShow').value);
 });

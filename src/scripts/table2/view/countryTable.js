@@ -4,9 +4,11 @@ import { covidData } from '../../state';
 export class CountryTable {
 // eslint-disable-next-line class-methods-use-this
     paintTable() {
-        document.querySelector('.countryTbody').innerHTML = '';
-        for (let i = 0; i < covidData.Countries.length; i += 1) {
-            document.querySelector('.countryTbody').innerHTML += `<tr><td>${covidData.Countries[i].Country}</td><td>${covidData.Countries[i].TotalConfirmed}</td></tr>`;
+        if (covidData) {
+            document.querySelector('.countryTbody').innerHTML = '';
+            for (let i = 0; i < covidData.Countries.length; i += 1) {
+                document.querySelector('.countryTbody').innerHTML += `<tr><td>${covidData.Countries[i].Country}</td><td>${covidData.Countries[i].TotalConfirmed}</td></tr>`;
+            }
         }
     }
 }

@@ -175,10 +175,10 @@ main {
 #selectMoodShow{
     display: none;
 }
-.error{
+.errorShow{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 1);
     position: relative;
 }
 .errortextBlock {
@@ -193,8 +193,5 @@ main {
     h2{
         color:tomato;
         height: 50px;
-    }
-    p{
-        color:white;
     }
 }
