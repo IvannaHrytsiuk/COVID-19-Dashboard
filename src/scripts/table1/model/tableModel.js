@@ -7,10 +7,8 @@ const table = new Table();
 export class TableModel {
     // eslint-disable-next-line class-methods-use-this
     getMoodTable(elemVal) {
-        console.log(covidData);
         if (sessionStorage.getItem('country')) {
             const country = covidData.Countries.find((element) => element.Country === sessionStorage.getItem('country'));
-            console.log(country);
             // eslint-disable-next-line default-case
             switch (elemVal) {
             case 'Total':
