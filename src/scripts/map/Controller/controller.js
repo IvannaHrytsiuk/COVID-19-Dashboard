@@ -13,8 +13,8 @@ export const ControllerClass = class {
     }
 
     changeSelect() {
-        this.index = document.querySelector('#chooseOptions').options.selectedIndex;
-        this.chooseValue = document.querySelector('#chooseOptions').options[this.index].value;
+        this.index = document.querySelector('.mapSelect').options.selectedIndex;
+        this.chooseValue = document.querySelector('.mapSelect').options[this.index].value;
         return this.chooseValue;
     }
 };
