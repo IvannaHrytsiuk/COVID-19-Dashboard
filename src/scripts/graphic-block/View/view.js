@@ -1,35 +1,27 @@
 /* eslint-disable import/prefer-default-export */
-import 'chart.js/dist/Chart';
-import 'chart.js/dist/Chart.css';
+import { myChart } from '../constants/index';
+import { sumPopualtion } from '../../state';
 
 export const ViewGraphicClass = class {
-    constructor() {
-        this.ctx = document.getElementById('myChart').getContext('2d');
-        this.myChart = new Chart(this.ctx, {
-            type: 'bar',
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                        },
-                    }],
-                },
-            },
-        });
-    }
-
     init(label, data, color) {
+        this.a = document.querySelector('.graphic').options.selectedIndex;
+        if (document.querySelector('.graphic').options[this.a].value.includes('100K')) {
+            this.everyDayData = Object.values(data).map((_, i) => +(Object.values(data)[i] / (sumPopualtion / 100000)).toFixed(4));
+        } else {
+            this.everyDayData = Object.values(data);
+        }
         this.graphicData = {
             labels: Object.keys(data),
             datasets: [{
                 label,
-                data: Object.values(data),
+                data: this.everyDayData,
                 backgroundColor: color,
+                borderJoinStyle: 'round',
                 borderWidth: 1,
+                showLine: true,
             }],
         };
-        this.myChart.data = this.graphicData;
-        this.myChart.update();
+        myChart.data = this.graphicData;
+        myChart.update();
     }
 };
