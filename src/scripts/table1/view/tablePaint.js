@@ -34,10 +34,10 @@ export class Table {
     paintTableSelect() {
         if (sessionStorage.getItem('country')) {
             document.getElementById('selectMoodShow').innerHTML = '';
-            document.getElementById('selectMoodShow').innerHTML = '<option>Total Confirmed</option><option>New Confirmed</option><option>Total confirmed 100K</option><option>New Confirmed 100K</option>';
+            document.getElementById('selectMoodShow').innerHTML = '<option>Total</option><option>New</option><option>Total per 100K population</option><option>New per 100K population</option>';
         } else {
             document.getElementById('selectMoodShow').innerHTML = '';
-            document.getElementById('selectMoodShow').innerHTML = '<option>Total Confirmed</option><option>New Confirmed</option>';
+            document.getElementById('selectMoodShow').innerHTML = '<option>Total</option><option>New</option>';
         }
     }
 }

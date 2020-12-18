@@ -29,7 +29,7 @@ function paintSearch(arr, elem) {
             if (document.getElementById('selectMoodShow').value) {
                 tableModel.getMoodTable(document.getElementById('selectMoodShow').value);
             } else {
-                tableModel.getMoodTable('Total Comfirmed');
+                tableModel.getMoodTable('Total');
             }
         });
     }
@@ -62,12 +62,8 @@ function rememberCountry(country) {
     sessionStorage.setItem('country', country);
 }
 
-// function makeKeyUp (elem){
-//     if(elem.dataset.)
-// }
 document.body.addEventListener('click', (e) => {
     if (e.target.dataset.keycode) {
         document.querySelector('.searchCountryTable').dispatchEvent(new KeyboardEvent('keyup', { keyCode: e.target.dataset.keycode }));
-        console.log(e.target.dataset.keycode);
     }
 });

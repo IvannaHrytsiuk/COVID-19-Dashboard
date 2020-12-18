@@ -13,6 +13,7 @@ import { IfError } from './scripts/general/ifError';
 import './scripts/general/search';
 import './scripts/keyBoard';
 import './scripts/table1/controller/table';
+import './scripts/table2/controller/countriesControll';
 
 const State = new StateClass();
 const countryTable = new CountryTable();
@@ -65,10 +66,11 @@ window.addEventListener('load', () => {
                 console.log('work');
             }, 1000);
         } else {
-            countryTable.paintTable();
+            document.getElementById('chooseView').value = 'Total confirmed';
+            countryTable.paintTable(document.getElementById('chooseView').value);
             table.paintTableSelect();
             table.paintTableHeader();
-            tableModel.getMoodTable('Total Confirmed');
+            tableModel.getMoodTable('Total');
             ViewMap.init();
             setTimeout(() => {
                 ViewMap.addCircle('TotalConfirmed', 'red', 40);

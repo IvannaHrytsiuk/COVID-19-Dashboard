@@ -13,24 +13,24 @@ export class TableModel {
             console.log(country);
             // eslint-disable-next-line default-case
             switch (elemVal) {
-            case 'Total Confirmed':
+            case 'Total':
                 table.paintTableTotalCountry(country.TotalConfirmed, country.TotalDeaths, country.TotalRecovered);
                 break;
-            case 'New Confirmed':
+            case 'New':
                 table.paintTableTotalCountry(country.NewConfirmed, country.NewDeaths, country.NewRecovered);
                 break;
-            case 'Total confirmed 100K':
+            case 'Total per 100K population':
                 this.calculate100(country.TotalConfirmed, country.TotalDeaths, country.TotalRecovered);
                 break;
-            case 'New Confirmed 100K':
+            case 'New per 100K population':
                 this.calculate100(country.NewConfirmed, country.NewDeaths, country.NewRecovered);
                 break;
             }
         } else {
             // eslint-disable-next-line no-lonely-if
-            if (elemVal === 'Total Confirmed') {
+            if (elemVal === 'Total') {
                 table.paintTableTotal(covidData.Global.TotalConfirmed, covidData.Global.TotalDeaths, covidData.Global.TotalRecovered);
-            } else if (elemVal === 'New Confirmed') {
+            } else if (elemVal === 'New') {
                 table.paintTableTotal(covidData.Global.NewConfirmed, covidData.Global.NewDeaths, covidData.Global.NewRecovered);
             }
         }

@@ -36,7 +36,7 @@ export const StateClass = class {
 
     async getCountriesData() {
         try {
-            this.url = 'https://restcountries.eu/rest/v2/all?fields=name;population;flag';
+            this.url = 'https://restcountries.eu/rest/v2/all?fields=name;population;flag;alpha2Code';
             this.res = await fetch(this.url);
             this.data = await this.res.json();
             countriesData = this.data;

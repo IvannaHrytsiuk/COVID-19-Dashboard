@@ -402,9 +402,6 @@ const Keyboard = {
                 button.classList.remove('keyboard__key--active');
             }
         });
-        // document.querySelector('.keyboard__keys').addEventListener('click', (e) => {
-        //     ClickedElement = e.target;
-        // });
     },
 };
 
