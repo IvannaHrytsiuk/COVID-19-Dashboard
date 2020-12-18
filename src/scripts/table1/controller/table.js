@@ -1,7 +1,7 @@
-import { TableControll } from '../model/tableControll';
+import { TableModel } from '../model/tableModel';
 
 document.getElementById('selectMoodShow').addEventListener('change', () => {
-    const tableControll = new TableControll();
+    const tableModel = new TableModel();
     console.log(document.getElementById('selectMoodShow').value);
-    tableControll.getMoodTable(document.getElementById('selectMoodShow').value);
+    tableModel.getMoodTable(document.getElementById('selectMoodShow').value);
 });

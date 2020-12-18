@@ -15,8 +15,9 @@
         "indent": ["error", 4],
         "import/no-cycle": "off",
         "max-len":"off",
-
+        "no-param-reassign":"off",
         "no-use-before-define":"off",
-        "no-shadow":"off"
+        "no-shadow":"off",
+        "prefer-const":"off"
     }
 }

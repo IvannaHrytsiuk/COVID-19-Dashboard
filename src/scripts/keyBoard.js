@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/prefer-default-export
+// export let clickedElement = '';
 const keyLayout = [[
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace', '♫',
     '!?', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', '}',
@@ -117,10 +119,6 @@ const Keyboard = {
                     cursor = document.querySelector('.searchCountryTable').selectionStart - 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('oninput');
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -131,10 +129,6 @@ const Keyboard = {
                     // eslint-disable-next-line no-underscore-dangle
                     this._toggleCapsLock();
                     keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock);
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -145,10 +139,6 @@ const Keyboard = {
                     // eslint-disable-next-line no-underscore-dangle
                     this._toggleShift();
                     keyElement.classList.toggle('keyboard__key--active', this.properties.shift);
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -158,10 +148,6 @@ const Keyboard = {
                     leng = 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._toggleLangEn(true);
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -171,10 +157,6 @@ const Keyboard = {
                     leng = 0;
                     // eslint-disable-next-line no-underscore-dangle
                     this._toggleLangEn(true);
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -185,10 +167,6 @@ const Keyboard = {
                     cursor = document.querySelector('.searchCountryTable').selectionStart + 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('oninput');
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -200,10 +178,6 @@ const Keyboard = {
                     cursor = document.querySelector('.searchCountryTable').selectionStart + 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('oninput');
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -214,10 +188,6 @@ const Keyboard = {
                     this.close();
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('onclose');
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -227,10 +197,6 @@ const Keyboard = {
                     cursor = document.querySelector('.searchCountryTable').selectionStart - 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('oninput');
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
@@ -240,17 +206,12 @@ const Keyboard = {
                     cursor = document.querySelector('.searchCountryTable').selectionStart + 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('oninput');
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
 
             default:
                 keyElement.textContent = key.toLowerCase();
                 keyElement.addEventListener('click', () => {
-                    console.log(this.properties.capsLock);
                     if (key === 1 && this.properties.shift) {
                         this.setCursor('!');
                     } else if (key === 2 && this.properties.shift) {
@@ -277,11 +238,6 @@ const Keyboard = {
                     cursor = document.querySelector('.searchCountryTable').selectionStart + 1;
                     // eslint-disable-next-line no-underscore-dangle
                     this._triggerEvent('oninput');
-                    console.log(count);
-                    if (count === 0) {
-                        // eslint-disable-next-line no-underscore-dangle
-                        this._toggleSound(keyElement.getAttribute('data-keyCode'));
-                    }
                 });
                 break;
             }
@@ -302,11 +258,6 @@ const Keyboard = {
             document.querySelector('.searchCountryTable').selectionStart = cursor;
             document.querySelector('.searchCountryTable').selectionEnd = cursor;
         }
-    },
-
-    // eslint-disable-next-line no-underscore-dangle
-    _toggleSound(key) {
-        console.log(key);
     },
 
     // eslint-disable-next-line no-underscore-dangle
@@ -451,6 +402,9 @@ const Keyboard = {
                 button.classList.remove('keyboard__key--active');
             }
         });
+        // document.querySelector('.keyboard__keys').addEventListener('click', (e) => {
+        //     ClickedElement = e.target;
+        // });
     },
 };
 

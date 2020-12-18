@@ -6,16 +6,6 @@ export class Table {
         this.switcher = 0;
     }
 
-    // checkSwitcher() {
-    //     if (this.switcher === 0) {
-    //         this.switcher = 1;
-    //     } else {
-    //         this.switcher = 0;
-    //     }
-    //     const mood = new TableMood(this.switcher);
-    //     return mood.changeMood();
-    // }
-
     // eslint-disable-next-line class-methods-use-this
     paintTableHeader() {
         document.querySelector('thead').innerHTML = '';
