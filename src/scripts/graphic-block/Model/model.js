@@ -2,7 +2,7 @@
 import { ControllerGraphicClass } from '../Controller/index';
 import { ViewGraphicClass } from '../View/index';
 import {
-    allDayCases, allDaydDeaths, allDayRecovered, newDay,
+    allDayCases, allDayDeaths, allDayRecovered,
 } from '../../state';
 import { State } from '../../../index';
 
@@ -14,7 +14,7 @@ export const ModelClass = class {
         this.apiName = 'Total confirmed';
     }
 
-    changeColorCircle() {
+    changeColorGraphic() {
         this.select = Controller.changeSelect();
         switch (this.select) {
         case 'Total confirmed':
@@ -22,8 +22,8 @@ export const ModelClass = class {
             ViewGraphic.init(this.apiName, allDayCases, 'red');
             break;
         case 'Total death':
-            this.apiName = 'Total death';
-            ViewGraphic.init('Total death', allDaydDeaths, 'yellow');
+            this.apiName = 'Total deaths';
+            ViewGraphic.init(this.apiName, allDayDeaths, 'yellow');
             break;
         case 'Total recovered':
             this.apiName = 'Total recodeved';
@@ -34,8 +34,8 @@ export const ModelClass = class {
             ViewGraphic.init(this.apiName, State.getNewEveryDayData([], allDayCases), 'red');
             break;
         case 'New death':
-            this.apiName = 'New death';
-            ViewGraphic.init(this.apiName, State.getNewEveryDayData([], allDaydDeaths), 'yellow');
+            this.apiName = 'New deaths';
+            ViewGraphic.init(this.apiName, State.getNewEveryDayData([], allDayDeaths), 'yellow');
             break;
         case 'New recovered':
             this.apiName = 'New recovered';
@@ -43,11 +43,11 @@ export const ModelClass = class {
             break;
         case 'Total confirmed 100K':
             this.apiName = 'Total confirmed 100K';
-            ViewGraphic.init('Total confirmed 100K', allDayCases, 'red');
+            ViewGraphic.init(this.apiName, allDayCases, 'red');
             break;
         case 'Total death 100K':
-            this.apiName = 'Total death 100K';
-            ViewGraphic.init('Total Death  100K', allDaydDeaths, 'yellow');
+            this.apiName = 'Total deaths 100K';
+            ViewGraphic.init(this.apiName, allDayDeaths, 'yellow');
             break;
         case 'Total recovered 100K':
             this.apiName = 'Total recodeved 100K';
@@ -58,8 +58,8 @@ export const ModelClass = class {
             ViewGraphic.init(this.apiName, State.getNewEveryDayData([], allDayCases), 'red');
             break;
         case 'New death 100K':
-            this.apiName = 'New death 100K';
-            ViewGraphic.init(this.apiName, State.getNewEveryDayData([], allDaydDeaths), 'yellow');
+            this.apiName = 'New deaths 100K';
+            ViewGraphic.init(this.apiName, State.getNewEveryDayData([], allDayDeaths), 'yellow');
             break;
         case 'New recovered 100K':
             this.apiName = 'New recovered 100K';
