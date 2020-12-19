@@ -12,6 +12,7 @@ const map = L.map('map', {
   center: [52.4345, 30.9754],
   zoom: 3,
   layers: grayscale,
+  worldCopyJump: true,
 });
 const grayscale = L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`, {
   id: 'mapbox/dark-v9',
