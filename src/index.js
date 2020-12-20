@@ -1,22 +1,24 @@
+import './style/style.scss';
+import './style/keyBoard.scss';
 /* eslint-disable import/prefer-default-export */
 import { Table } from './scripts/table1/view/tablePaint';
 import { CountryTable } from './scripts/table2/view/countryTable';
-import { StateClass } from './scripts/state';
-import './style/style.css';
-import './style/keyBoard.css';
+import { StateClass, covidData } from './scripts/state';
 import { countryData } from './scripts/map/constants/Country';
-import {
-    map, ViewMap, Model,
-} from './scripts/map/constants/index';
+import { map, ViewMap, Model } from './scripts/map/constants/index';
 import { ControllerClass } from './scripts/map/Controller/index';
+import { TableModel } from './scripts/table1/model/tableModel';
+import { IfError } from './scripts/general/ifError';
 
 import './scripts/general/search';
 import './scripts/keyBoard';
 import './scripts/table1/controller/table';
+import './scripts/table2/controller/countriesControll';
 
 const State = new StateClass();
 const countryTable = new CountryTable();
 const table = new Table();
+const tableModel = new TableModel();
 
 let nameCountry;
 
@@ -54,12 +56,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('load', () => {
-    countryTable.paintTable();
-    table.checkSwitcher();
-    table.paintTableHeader();
-    ViewMap.init();
     setTimeout(() => {
-        ViewMap.addCircle('TotalConfirmed', 'red', 40);
+        if (!covidData || covidData === 'undefined') {
+            const error = new IfError();
+            error.ifErrorView();
+            setTimeout(() => {
+                State.getCovidData();
+                window.location.reload();
+                console.log('work');
+            }, 1000);
+        } else {
+            document.getElementById('chooseView').value = 'Total confirmed';
+            countryTable.paintTable(document.getElementById('chooseView').value);
+            table.paintTableSelect();
+            table.paintTableHeader();
+            tableModel.getMoodTable('Total');
+            ViewMap.init();
+            setTimeout(() => {
+                ViewMap.addCircle('TotalConfirmed', 'red', 40);
+            }, 1000);
+        }
     }, 1000);
 });
 
