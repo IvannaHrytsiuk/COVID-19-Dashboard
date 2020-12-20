@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { Table } from './scripts/table1/view/tablePaint';
 import { CountryTable } from './scripts/table2/view/countryTable';
-import { StateClass, allDayCases } from './scripts/state';
+import { StateClass, allDayCases, covidData, coordinatesCountry } from './scripts/state';
+// import rememberCountry from './scripts/general/search';
 import './style/style.css';
 import './style/keyBoard.css';
 import { countryData } from './scripts/map/constants/Country';
@@ -9,19 +10,26 @@ import {
     map, ViewMap, Model,
 } from './scripts/map/constants/index';
 import { ControllerClass } from './scripts/map/Controller/index';
-import './scripts/general/search';
+import { ControllerGraphicClass } from './scripts/graphic-block/Controller/index';
+import rememberCountry from './scripts/general/search';
 import './scripts/keyBoard';
-import './scripts/table1/controller/table';
+// import './scripts/table1/controller/table';
+import { TableModel } from './scripts/table1/model/tableModel';
+import { IfError } from './scripts/general/ifError';
 import { ViewGraphicClass } from './scripts/graphic-block/View/index';
 import { ModelClass } from './scripts/graphic-block/Model/index';
+
+import './scripts/table1/controller/table';
+import './scripts/table2/controller/countriesControll';
 
 const ViewGraphic = new ViewGraphicClass();
 const State = new StateClass();
 const countryTable = new CountryTable();
 const table = new Table();
 const ModelGraphic = new ModelClass();
-
-let nameCountry;
+const tableModel = new TableModel();
+const Control = new ControllerClass();
+let geojson;
 
 function style() {
     return {
@@ -39,34 +47,67 @@ function onEachFeature(feature, layer) {
         mouseout: ControllerClass.resetHighlight,
         click: (e) => {
             const layers = e.target;
-            nameCountry = layers.feature.properties.name;
+            rememberCountry(layers.feature.properties.id);
+            State.getDataFromCountry(layers.feature.properties.id);
+            setTimeout(() => { ModelGraphic.changeColorGraphic(); }, 1000);
         },
     });
 }
 
-const geojson = L.geoJson(countryData, {
-    style,
-    onEachFeature,
-}).addTo(map);
+function eventChange(select) {
+    document.querySelector('.mapSelect').options.selectedIndex = select;
+    document.querySelector('.graphic').options.selectedIndex = select;
+    document.querySelector('#chooseView').options.selectedIndex = select;
+    ModelGraphic.changeColorGraphic();
+    Model.changeColorCircle();
+    countryTable.paintTable(document.querySelector('.table2select').options[select].value);
+}
 
-document.querySelector('#chooseOptions').addEventListener('change', Model.changeColorCircle);
-document.querySelector('#chooseOptionsGraphic').addEventListener('change', ModelGraphic.changeColorCircle);
+document.querySelector('.mapSelect').addEventListener('change', () => {
+    eventChange(document.querySelector('.mapSelect').options.selectedIndex);
+});
+document.querySelector('.graphic').addEventListener('change', () => {
+    eventChange(document.querySelector('.graphic').options.selectedIndex);
+});
+document.querySelector('.table2select').addEventListener('change', () => {
+    eventChange(document.querySelector('.table2select').options.selectedIndex);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     State.getCovidData();
     State.getCountriesData();
-    State.getEveryDayData();
+    State.getTotalEveryDayData();
 });
-
+let a;
 window.addEventListener('load', () => {
-    countryTable.paintTable();
-    table.checkSwitcher();
-    table.paintTableHeader();
-    ViewMap.init();
     setTimeout(() => {
-        ViewMap.addCircle('TotalConfirmed', 'red', 40);
-        ViewGraphic.init('Total Cases', allDayCases, 'red');
+        if (!covidData || covidData === 'undefined') {
+            const error = new IfError();
+            error.ifErrorView();
+            a = setInterval(() => {
+                State.getCovidData();
+                window.location.reload();
+                console.log('work');
+            }, 5000);
+        } else {
+            console.log('done');
+            clearInterval(a);
+            document.getElementById('chooseView').value = 'Total confirmed';
+            countryTable.paintTable(document.getElementById('chooseView').value);
+            table.paintTableSelect();
+            table.paintTableHeader();
+            tableModel.getMoodTable('Total');
+            ViewMap.init();
+            setTimeout(() => {
+                ViewMap.addCircle('TotalConfirmed', 'red', 40);
+                ViewGraphic.init('Total Cases', allDayCases, 'red');
+                geojson = L.geoJson(countryData, {
+                    style,
+                    onEachFeature,
+                }).addTo(map);
+            }, 1000);
+        }
     }, 1000);
 });
 
-export { geojson, State };
+export { geojson, State, ModelGraphic };
