@@ -6,20 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="inputBlock">
+    <!-- <header class="inputBlock">
         <input type="text" class="searchCountry" placeholder="Search country">
         <ul class="countryList">
     
         </ul>
-    </header>
+    </header> -->
     <main>
         <div class="container">
             <div class="tableBlock">
                 <select name="selectMoodShow" id="selectMoodShow">
-                    <option id="total">Total</option>
-                    <option id="per100">Per 100K population</option>
                   </select>
-                <img class="switcher" src="https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/icons8-arrow-48.png?alt=media&token=bfafe1da-bd8c-4338-865f-027ff80fc3a8" alt="">
                 <table class="table-scroll">
                     <thead>
                     </thead>
@@ -29,18 +26,29 @@
         </div>
         <div class="countryBlock">
             <div class="searchCountryBlock">
-                <label for="" id="forKeyboard"><img src="https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/icons8-keyboard-48.png?alt=media&token=61a8e10d-2a7f-4987-92f5-25930be0c32d" alt=""></label>
                 <input type="text" class="searchCountryTable" placeholder="Search country">
+                <ul class="countryListTable2">
+
+                </ul>
                 <div>
                     <table class="countryTable">
                         <thead>
                             <tr>
                                 <th>Country</th>
                                 <th>
-                                    <select name="chooseView" id="chooseView">
-                                        <option value="">Confirmed</option>
-                                        <option value="">Death</option>
-                                        <option value="">Recovered</option>
+                                    <select class="table2select" name="chooseView" id="chooseView">
+                                        <option value="Total confirmed">Total confirmed</option>
+                                        <option value="Total death">Total death</option>
+                                        <option value="Total recovered">Total recovered</option>
+                                        <option value="New confirmed">New confirmed</option>
+                                        <option value="New death">New death</option>
+                                        <option value="New recovered">New recovered</option>
+                                        <option value="Total confirmed 100K">Total confirmed 100K</option>
+                                        <option value="Total death 100K">Total death 100K</option>
+                                        <option value="Total recovered 100K">Total recovered 100K</option>
+                                        <option value="New confirmed 100K">New confirmed 100K</option>
+                                        <option value="New death 100K">New death 100K</option>
+                                        <option value="New recovered 100K">New recovered 100K</option>
                                     </select>
                                 </th>
                             </tr>
@@ -56,7 +64,7 @@
         <div class="map_block">
           <div id = "map"></div>
           <div class="tumblers">
-            <select name="" id="chooseOptions">
+            <!-- <select name="" id="chooseOptions">
               <option value="total_case">Total Case</option>
               <option value="total_death">Total Death</option>
               <option value="total_recovery">Total Recovery</option>
@@ -69,12 +77,26 @@
               <option value="new_case_100">New Case 100</option>
               <option value="new_death_100">New Death 100</option>
               <option value="new_recovery_100">New Recovery 100</option>
+            </select> -->
+            <select class="mapSelect" name="chooseView" id="chooseView">
+                <option value="Total confirmed">Total confirmed</option>
+                <option value="Total death">Total death</option>
+                <option value="Total recovered">Total recovered</option>
+                <option value="New confirmed">New confirmed</option>
+                <option value="New death">New death</option>
+                <option value="New recovered">New recovered</option>
+                <option value="Total confirmed 100K">Total confirmed 100K</option>
+                <option value="Total death 100K">Total death 100K</option>
+                <option value="Total recovered 100K">Total recovered 100K</option>
+                <option value="New confirmed 100K">New confirmed 100K</option>
+                <option value="New death 100K">New death 100K</option>
+                <option value="New recovered 100K">New recovered 100K</option>
             </select>
           </div>
         </div>
         <div class="graphic_block">
             <div class="tumblers">
-                <select name="" id="chooseOptionsGraphic">
+                <!-- <select class="selectOpt" name="" id="chooseOptionsGraphic">
                   <option value="total_case">Total Case</option>
                   <option value="total_death">Total Death</option>
                   <option value="total_recovery">Total Recovery</option>
@@ -87,6 +109,20 @@
                   <option value="new_case_100">New Case 100</option>
                   <option value="new_death_100">New Death 100</option>
                   <option value="new_recovery_100">New Recovery 100</option>
+                </select> -->
+                <select class="graphic" name="chooseView" id="chooseView">
+                    <option value="Total confirmed">Total confirmed</option>
+                    <option value="Total death">Total death</option>
+                    <option value="Total recovered">Total recovered</option>
+                    <option value="New confirmed">New confirmed</option>
+                    <option value="New death">New death</option>
+                    <option value="New recovered">New recovered</option>
+                    <option value="Total confirmed 100K">Total confirmed 100K</option>
+                    <option value="Total death 100K">Total death 100K</option>
+                    <option value="Total recovered 100K">Total recovered 100K</option>
+                    <option value="New confirmed 100K">New confirmed 100K</option>
+                    <option value="New death 100K">New death 100K</option>
+                    <option value="New recovered 100K">New recovered 100K</option>
                 </select>
               </div>
             <canvas id="myChart" width="400" height="400"></canvas></div>
