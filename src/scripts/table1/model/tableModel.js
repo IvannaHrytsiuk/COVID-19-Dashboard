@@ -8,7 +8,8 @@ export class TableModel {
     // eslint-disable-next-line class-methods-use-this
     getMoodTable(elemVal) {
         if (sessionStorage.getItem('country')) {
-            const country = covidData.Countries.find((element) => element.CountryCode === sessionStorage.getItem('country'));
+            const country = covidData.Countries.find((element) => element.CountryCode === sessionStorage.getItem('country')
+            || element.Country === sessionStorage.getItem('country'));
             // eslint-disable-next-line default-case
             switch (elemVal) {
             case 'Total':
@@ -40,7 +41,7 @@ export class TableModel {
 
     // eslint-disable-next-line class-methods-use-this
     calculate100(conf, death, recov) {
-        const population = countriesData.find((element) => element.name === sessionStorage.getItem('country'));
+        const population = countriesData.find((element) => element.alpha2Code === sessionStorage.getItem('country'));
         const cases100 = conf / (population.population / 100000);
         const death100 = death / (population.population / 100000);
         const recovered100 = recov / (population.population / 100000);
