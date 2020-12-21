@@ -4,7 +4,6 @@ import regeneratorRuntime from 'regenerator-runtime';
 
 export let covidData;
 export let countriesData;
-export let countriesCovidData;
 export let allDayCases;
 export let allDayDeaths;
 export let allDayRecovered;
@@ -16,22 +15,29 @@ export let coordinatesCountry;
 export const StateClass = class {
     async getCovidData() {
         try {
-            this.url = 'https://disease.sh/v3/covid-19/all';
+            // https://cors-anywhere.herokuapp.com/
+            this.url = 'https://api.covid19api.com/summary';
             this.res = await fetch(this.url);
             this.data = await this.res.json();
-            covidData = this.data;
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async getCovidDataCountries() {
-        try {
-            this.url = 'https://disease.sh/v3/covid-19/countries';
-            this.res = await fetch(this.url);
-            this.data = await this.res.json();
-            countriesCovidData = this.data;
-            this.getCalculatePopulation();
+            if (this.data.Message === '') {
+                covidData = this.data;
+                this.getCalculatePopulation();
+                for (this.i = 0; this.i < covidData.Countries.length; this.i += 1) {
+                    this.urlMapCenter = `https://api.mapbox.com/geocoding/v5/mapbox.places/${covidData.Countries[this.i].Slug}.json?types=country&access_token=pk.eyJ1IjoibXlmZW5peDkyIiwiYSI6ImNrYXBpdXhwMTF5NTYzMXA2emY0M3pnd24ifQ.I73eBezMUvPr3OAN-aF1Cg`;
+                    this.resMapCenter = await fetch(this.urlMapCenter);
+                    this.dataMapCenter = await this.resMapCenter.json();
+                    covidData.Countries[this.i].centerCountry = this.dataMapCenter.features[0].center.reverse();
+                    // доделать
+                    // p = new Promise((resolve, reject) => {
+                    //   resolve(fetch(urlMapCenter));
+                    // });
+                }
+                // await Promise.all(Array.from(p)).then((val) => {
+                //   console.log(val);
+                // });
+            } else {
+                throw Error(this.data.Message);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -52,29 +58,20 @@ export const StateClass = class {
     }
 
     getCalculatePopulation() {
-        for (this.i = 0; this.i < countriesCovidData.length; this.i += 1) {
-            if (countriesCovidData[this.i].population === 0) {
-                countriesCovidData[this.i].TotalConfirmed100K = 0;
-                countriesCovidData[this.i].TotalDeaths100K = 0;
-                countriesCovidData[this.i].TotalRecovered100K = 0;
-                countriesCovidData[this.i].NewConfirmed100K = 0;
-                countriesCovidData[this.i].NewDeaths100K = 0;
-                countriesCovidData[this.i].NewRecovered100K = 0;
-            } else {
-                countriesCovidData[this.i].TotalConfirmed100K = +(countriesCovidData[this.i].cases / (countriesCovidData[this.i].population / 100000)).toFixed(2);
-                countriesCovidData[this.i].TotalDeaths100K = +(countriesCovidData[this.i].deaths / (countriesCovidData[this.i].population / 100000)).toFixed(2);
-                countriesCovidData[this.i].TotalRecovered100K = +(countriesCovidData[this.i].recovered / (countriesCovidData[this.i].population / 100000)).toFixed(2);
-                countriesCovidData[this.i].NewConfirmed100K = +(countriesCovidData[this.i].todayCases / (countriesCovidData[this.i].population / 100000)).toFixed(2);
-                countriesCovidData[this.i].NewDeaths100K = +(countriesCovidData[this.i].todayDeaths / (countriesCovidData[this.i].population / 100000)).toFixed(2);
-                countriesCovidData[this.i].NewRecovered100K = +(countriesCovidData[this.i].todayRecovered / (countriesCovidData[this.i].population / 100000)).toFixed(2);
-            }
+        for (this.i = 0; this.i < covidData.Countries.length; this.i += 1) {
+            covidData.Countries[this.i].TotalConfirmed100K = +(covidData.Countries[this.i].TotalConfirmed / (countriesData.find((e) => e.alpha2Code === covidData.Countries[this.i].CountryCode).population / 100000)).toFixed(2);
+            covidData.Countries[this.i].TotalDeaths100K = +(covidData.Countries[this.i].TotalDeaths / (countriesData.find((e) => e.alpha2Code === covidData.Countries[this.i].CountryCode).population / 100000)).toFixed(2);
+            covidData.Countries[this.i].TotalRecovered100K = +(covidData.Countries[this.i].TotalRecovered / (countriesData.find((e) => e.alpha2Code === covidData.Countries[this.i].CountryCode).population / 100000)).toFixed(2);
+            covidData.Countries[this.i].NewConfirmed100K = +(covidData.Countries[this.i].NewConfirmed / (countriesData.find((e) => e.alpha2Code === covidData.Countries[this.i].CountryCode).population / 100000)).toFixed(2);
+            covidData.Countries[this.i].NewDeaths100K = +(covidData.Countries[this.i].NewDeaths / (countriesData.find((e) => e.alpha2Code === covidData.Countries[this.i].CountryCode).population / 100000)).toFixed(2);
+            covidData.Countries[this.i].NewRecovered100K = +(covidData.Countries[this.i].NewRecovered / (countriesData.find((e) => e.alpha2Code === covidData.Countries[this.i].CountryCode).population / 100000)).toFixed(2);
         }
-        covidData.TotalConfirmed100K = +(covidData.cases / (covidData.population / 100000)).toFixed(2);
-        covidData.TotalDeaths100K = +(covidData.deaths / (covidData.population / 100000)).toFixed(2);
-        covidData.TotalRecovered100K = +(covidData.recovered / (covidData.population / 100000)).toFixed(2);
-        covidData.NewConfirmed100K = +(covidData.todayCases / (covidData.population / 100000)).toFixed(2);
-        covidData.NewDeaths100K = +(covidData.todayDeaths / (covidData.population / 100000)).toFixed(2);
-        covidData.NewRecovered100K = +(covidData.todayRecovered / (covidData.population / 100000)).toFixed(2);
+        covidData.Global.TotalConfirmed100K = +(covidData.Global.TotalConfirmed / (sumPopualtion / 100000)).toFixed(2);
+        covidData.Global.TotalDeaths100K = +(covidData.Global.TotalDeaths / (sumPopualtion / 100000)).toFixed(2);
+        covidData.Global.TotalRecovered100K = +(covidData.Global.TotalRecovered / (sumPopualtion / 100000)).toFixed(2);
+        covidData.Global.NewConfirmed100K = +(covidData.Global.NewConfirmed / (sumPopualtion / 100000)).toFixed(2);
+        covidData.Global.NewDeaths100K = +(covidData.Global.NewDeaths / (sumPopualtion / 100000)).toFixed(2);
+        covidData.Global.NewRecovered100K = +(covidData.Global.NewRecovered / (sumPopualtion / 100000)).toFixed(2);
     }
 
     async getTotalEveryDayData() {
@@ -92,14 +89,28 @@ export const StateClass = class {
 
     async getDataFromCountry(nameCountry) {
         try {
-            this.url = `https://disease.sh/v3/covid-19/historical/${nameCountry}?lastdays=all`;
+            this.url = `https://api.covid19api.com/total/country/${nameCountry}`;
             this.res = await fetch(this.url);
             this.data = await this.res.json();
             dataFromCountry = this.data;
-            populationCountry = countriesCovidData.find((e) => e.countryInfo.iso2 === sessionStorage.getItem('country')).population;
-            allDayCases = dataFromCountry.timeline.cases;
-            allDayDeaths = dataFromCountry.timeline.deaths;
-            allDayRecovered = dataFromCountry.timeline.recovered;
+            populationCountry = countriesData.find((e) => e.alpha2Code === sessionStorage.getItem('country')).population;
+            this.dayData = [];
+            this.numCases = [];
+            this.numDeaths = [];
+            this.numRecovered = [];
+            for (let i = 0; i < dataFromCountry.length; i += 1) {
+                this.dayData.push(dataFromCountry[i].Date);
+                this.numCases.push(dataFromCountry[i].Confirmed);
+                this.numDeaths.push(dataFromCountry[i].Deaths);
+                this.numRecovered.push(dataFromCountry[i].Recovered);
+            }
+            this.dayData = this.dayData.map((e) => e.slice(2, 10).replaceAll('-', '/').repeat(2).slice(3, 10)
+                .split(''));
+            this.dayData.map((_, i) => this.dayData[i].splice(5, 0, '/'));
+            this.dayData = this.dayData.map((e) => e.join(''));
+            allDayCases = Object.assign(...this.dayData.map((n, i) => ({ [n]: this.numCases[i] })));
+            allDayDeaths = Object.assign(...this.dayData.map((n, i) => ({ [n]: this.numDeaths[i] })));
+            allDayRecovered = Object.assign(...this.dayData.map((n, i) => ({ [n]: this.numRecovered[i] })));
         } catch (error) {
             console.log(error);
         }
