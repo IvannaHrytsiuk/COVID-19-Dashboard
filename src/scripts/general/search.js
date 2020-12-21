@@ -3,12 +3,13 @@ import { Table } from '../table1/view/tablePaint';
 import { TableModel } from '../table1/model/tableModel';
 // import { clickedElement } from '../keyBoard';
 
-document.querySelector('.searchCountry').addEventListener('focus', () => {
-    paintSearch(countriesData, document.querySelector('.countryList'));
-});
-document.querySelector('.searchCountryTable').addEventListener('focus', () => {
-    paintSearch(countriesData, document.querySelector('.countryListTable2'));
-});
+// закомментила в index.html верхний поиск и тут функции, которые к нему обращаются, чтобы не ломалось
+// document.querySelector('.searchCountry').addEventListener('focus', () => {
+//     paintSearch(countriesData, document.querySelector('.countryList'));
+// });
+// document.querySelector('.searchCountryTable').addEventListener('focus', () => {
+//     paintSearch(countriesData, document.querySelector('.countryListTable2'));
+// });
 
 function paintSearch(arr, elem) {
     elem.innerHTML = '';
@@ -35,17 +36,17 @@ function paintSearch(arr, elem) {
     }
 }
 
-document.querySelector('.searchCountry').addEventListener('keyup', (e) => {
-    // eslint-disable-next-line prefer-destructuring
-    const value = e.target.value.toUpperCase();
-    const newArr = [];
-    for (let i = 0; i < countriesData.length; i += 1) {
-        if (countriesData[i].name.toUpperCase().indexOf(value) > -1) {
-            newArr.push(countriesData[i]);
-        }
-    }
-    paintSearch(newArr, document.querySelector('.countryList'));
-});
+// document.querySelector('.searchCountry').addEventListener('keyup', (e) => {
+//     // eslint-disable-next-line prefer-destructuring
+//     const value = e.target.value.toUpperCase();
+//     const newArr = [];
+//     for (let i = 0; i < countriesData.length; i += 1) {
+//         if (countriesData[i].name.toUpperCase().indexOf(value) > -1) {
+//             newArr.push(countriesData[i]);
+//         }
+//     }
+//     paintSearch(newArr, document.querySelector('.countryList'));
+// });
 document.querySelector('.searchCountryTable').addEventListener('keyup', (e) => {
     // eslint-disable-next-line prefer-destructuring
     const value = e.target.value.toUpperCase();
@@ -58,7 +59,7 @@ document.querySelector('.searchCountryTable').addEventListener('keyup', (e) => {
     paintSearch(newArr, document.querySelector('.countryListTable2'));
 });
 
-function rememberCountry(country) {
+export default function rememberCountry(country) {
     sessionStorage.setItem('country', country);
 }
 
