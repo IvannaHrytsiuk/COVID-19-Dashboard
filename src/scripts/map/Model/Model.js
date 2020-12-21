@@ -9,29 +9,53 @@ export const ModelClass = class {
     changeColorCircle() {
         this.select = Controller.changeSelect();
         switch (this.select) {
-        case 'total_death':
+        case 'Total death':
             this.apiName = 'TotalDeaths';
             ViewMap.addCircle(this.apiName, 'yellow', 1);
             break;
-        case 'total_case':
+        case 'Total confirmed':
             this.apiName = 'TotalConfirmed';
             ViewMap.addCircle(this.apiName, 'red', 40);
             break;
-        case 'total_recovery':
+        case 'Total recovered':
             this.apiName = 'TotalRecovered';
             ViewMap.addCircle(this.apiName, 'lightblue', 25);
             break;
-        case 'new_case':
+        case 'New confirmed':
             this.apiName = 'NewConfirmed';
             ViewMap.addCircle(this.apiName, 'red', 0.4);
             break;
-        case 'new_death':
+        case 'New death':
             this.apiName = 'NewDeaths';
             ViewMap.addCircle(this.apiName, 'yellow', 0.005);
             break;
-        case 'new_recovery':
+        case 'New recovered':
             this.apiName = 'NewRecovered';
             ViewMap.addCircle(this.apiName, 'lightblue', 0.3);
+            break;
+        case 'Total death 100K':
+            this.apiName = 'TotalDeaths100K';
+            ViewMap.addCircle(this.apiName, 'yellow', 0.003);
+            break;
+        case 'Total confirmed 100K':
+            this.apiName = 'TotalConfirmed100K';
+            ViewMap.addCircle(this.apiName, 'red', 0.2);
+            break;
+        case 'Total recovered 100K':
+            this.apiName = 'TotalRecovered100K';
+            ViewMap.addCircle(this.apiName, 'lightblue', 0.15);
+            break;
+        case 'New confirmed 100K':
+            this.apiName = 'NewConfirmed100K';
+            ViewMap.addCircle(this.apiName, 'red', 0.003);
+            break;
+        case 'New death 100K':
+            this.apiName = 'NewDeaths100K';
+            ViewMap.addCircle(this.apiName, 'yellow', 0.0001);
+            break;
+        case 'New recovered 100K':
+            this.apiName = 'NewRecovered100K';
+            ViewMap.addCircle(this.apiName, 'lightblue', 0.004);
             break;
         default:
             break;
