@@ -3,34 +3,34 @@ import { ViewMap, Controller } from '../constants/index';
 
 export const ModelClass = class {
     constructor() {
-        this.apiName = 'TotalConfirmed';
+        this.apiName = 'cases';
     }
 
     changeColorCircle() {
         this.select = Controller.changeSelect();
         switch (this.select) {
         case 'Total death':
-            this.apiName = 'TotalDeaths';
+            this.apiName = 'deaths';
             ViewMap.addCircle(this.apiName, 'yellow', 1);
             break;
         case 'Total confirmed':
-            this.apiName = 'TotalConfirmed';
+            this.apiName = 'cases';
             ViewMap.addCircle(this.apiName, 'red', 40);
             break;
         case 'Total recovered':
-            this.apiName = 'TotalRecovered';
+            this.apiName = 'recovered';
             ViewMap.addCircle(this.apiName, 'lightblue', 25);
             break;
         case 'New confirmed':
-            this.apiName = 'NewConfirmed';
+            this.apiName = 'todayCases';
             ViewMap.addCircle(this.apiName, 'red', 0.4);
             break;
         case 'New death':
-            this.apiName = 'NewDeaths';
+            this.apiName = 'todayDeaths';
             ViewMap.addCircle(this.apiName, 'yellow', 0.005);
             break;
         case 'New recovered':
-            this.apiName = 'NewRecovered';
+            this.apiName = 'todayRecovered';
             ViewMap.addCircle(this.apiName, 'lightblue', 0.3);
             break;
         case 'Total death 100K':
