@@ -32,12 +32,12 @@ export class Table {
 
     // eslint-disable-next-line class-methods-use-this
     paintTableSelect() {
-      //  if (sessionStorage.getItem('country')) {
-            document.getElementById('selectMoodShow').innerHTML = '';
-            document.getElementById('selectMoodShow').innerHTML = '<option>Total</option><option>New</option><option>Total per 100K population</option><option>New per 100K population</option>';
-     //   } else {
-         //   document.getElementById('selectMoodShow').innerHTML = '';
-         //   document.getElementById('selectMoodShow').innerHTML = '<option>Total</option><option>New</option>';
-     //   }
+        //  if (sessionStorage.getItem('country')) {
+        document.getElementById('selectMoodShow').innerHTML = '';
+        document.getElementById('selectMoodShow').innerHTML = '<option>Total</option><option>New</option><option>Total per 100K population</option><option>New per 100K population</option>';
+        //   } else {
+        //   document.getElementById('selectMoodShow').innerHTML = '';
+        //   document.getElementById('selectMoodShow').innerHTML = '<option>Total</option><option>New</option>';
+        //   }
     }
 }

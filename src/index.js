@@ -1,3 +1,5 @@
+import './style/style.scss';
+import './style/keyBoard.scss';
 /* eslint-disable import/prefer-default-export */
 import { Table } from './scripts/table1/view/tablePaint';
 import { CountryTable } from './scripts/table2/view/countryTable';
@@ -8,9 +10,7 @@ import {
 import './style/style.css';
 import './style/keyBoard.css';
 import { countryData } from './scripts/map/constants/Country';
-import {
-    map, ViewMap, Model,
-} from './scripts/map/constants/index';
+import { map, ViewMap, Model } from './scripts/map/constants/index';
 import { ControllerClass } from './scripts/map/Controller/index';
 import { ControllerGraphicClass } from './scripts/graphic-block/Controller/index';
 import rememberCountry from './scripts/general/search';
@@ -94,14 +94,14 @@ window.addEventListener('load', () => {
         if (!covidData || covidData === 'undefined') {
             const error = new IfError();
             error.ifErrorView();
-            a = setInterval(() => {
+            setTimeout(() => {
                 State.getCovidData();
                 window.location.reload();
                 console.log('work');
-            }, 5000);
+              // c 1 секундой иногда моргает, я ставила 3 или 5 - не слишком долго, но и при этом моргание не раздражает
+              // пыталась прикрутить интервал, чтобы он обращался без моргания, но тогда при успешном запросе он продолжает обновляться
+            }, 1000);
         } else {
-            console.log('done');
-            clearInterval(a);
             document.getElementById('chooseView').value = 'Total confirmed';
             countryTable.paintTable(document.getElementById('chooseView').value);
             table.paintTableSelect();

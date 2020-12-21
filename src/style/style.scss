@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+// body{
+//   background-color: black;
+//   color:white;
+// }
+
 main {
   display: grid;
   margin: 10px;
@@ -30,8 +35,8 @@ main {
 }
 
 #map {
-  width: 1000px;
-  height: 700px;
+  width: 500px;
+  height: 400px;
   margin: 0 auto;
 }
 
@@ -135,7 +140,7 @@ main {
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
-.countryList {
+.countryList, .countryListTable2 {
   position: absolute;
     list-style-type: none;
     padding: 0;
@@ -172,14 +177,20 @@ main {
     width: 100%;
     height: 350px;
 }
+
 // #selectMoodShow{
 //     display: none;
 // }
 
-.error{
+th {
+  span {
+    padding:7px
+  }
+}
+.errorShow{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 1);
     position: relative;
 }
 .errortextBlock {
@@ -194,8 +205,5 @@ main {
     h2{
         color:tomato;
         height: 50px;
-    }
-    p{
-        color:white;
     }
 }
