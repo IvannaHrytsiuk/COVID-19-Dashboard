@@ -8,7 +8,10 @@ export class TableModel {
     // eslint-disable-next-line class-methods-use-this
     getMoodTable(elemVal) {
         if (sessionStorage.getItem('country')) {
+          // у меня были проблемы с получением страны по имени, я тут выбрала по коду получать, тогда немного проще
+          // но не везде логика на код прописана, но тут если что я смогу сама
             const country = covidData.Countries.find((element) => element.CountryCode === sessionStorage.getItem('country'));
+      //      const country = covidData.Countries.find((element) => element.Country === sessionStorage.getItem('country'));
             // eslint-disable-next-line default-case
             switch (elemVal) {
             case 'Total':
@@ -30,6 +33,7 @@ export class TableModel {
                 table.paintTableTotal(covidData.Global.TotalConfirmed, covidData.Global.TotalDeaths, covidData.Global.TotalRecovered);
             } else if (elemVal === 'New') {
                 table.paintTableTotal(covidData.Global.NewConfirmed, covidData.Global.NewDeaths, covidData.Global.NewRecovered);
+// здесь добавила переключатели для 100К по всему миру, эти данные уже в самой апи есть, я там отдельным в Global занесла
             } else if (elemVal === 'Total per 100K population') {
                 table.paintTableTotal(covidData.Global.TotalConfirmed100K, covidData.Global.TotalDeaths100K, covidData.Global.TotalRecovered100K);
             } else if (elemVal === 'New per 100K population') {

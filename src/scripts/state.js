@@ -36,7 +36,8 @@ export const StateClass = class {
                 //   console.log(val);
                 // });
             } else {
-                throw Error(this.data.Message);
+                return;
+                // throw Error(this.data.Message);
             }
         } catch (error) {
             console.log(error);

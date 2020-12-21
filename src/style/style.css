@@ -7,7 +7,8 @@ main {
   display: -ms-grid;
   display: grid;
   margin: 10px;
-      grid-template-areas: "country map tbl" "country map graphic";
+      grid-template-areas: "country map tbl"
+ "country map graphic";
   -ms-grid-rows: min-content;
       grid-template-rows: -webkit-min-content;
       grid-template-rows: min-content;
@@ -20,6 +21,7 @@ main {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: tbl;
+  padding: 0 !important;
 }
 
 .countryBlock {
@@ -43,8 +45,8 @@ main {
 }
 
 #map {
-  width: 1000px;
-  height: 700px;
+  width: 500px;
+  height: 300px;
   margin: 0 auto;
 }
 
@@ -87,7 +89,7 @@ main {
 }
 
 .tableBlock {
-  width: 500px;
+  width: 400px;
   position: relative;
 }
 
@@ -201,11 +203,8 @@ main {
   height: 350px;
 }
 
-#selectMoodShow {
-  display: none;
-}
 
-.error {
+.errorShow {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
