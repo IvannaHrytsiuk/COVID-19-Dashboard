@@ -201,10 +201,6 @@ main {
   height: 350px;
 }
 
-#selectMoodShow {
-  display: none;
-}
-
 .error {
   width: 100vw;
   height: 100vh;
