@@ -4,8 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import {
     map, grayscale, info, legend, Model,
 } from '../constants/index';
-import { covidData } from '../../state';
-import { State } from '../../..';
+import { countriesCovidData } from '../../state';
 
 export const ViewMapClass = class {
     constructor() {
@@ -30,10 +29,9 @@ export const ViewMapClass = class {
             fillColor: color,
             fillOpacity: 1,
         };
-
-        for (let i = 0; i < covidData.Countries.length; i += 1) {
-            this.location = L.circle(covidData.Countries[i].centerCountry,
-                (Math.round(covidData.Countries[i][name] / size)), this.circleOptions);
+        for (let i = 0; i < countriesCovidData.length; i += 1) {
+            this.location = L.circle([countriesCovidData[i].countryInfo.lat, countriesCovidData[i].countryInfo.long],
+                (Math.round(countriesCovidData[i][name] / size)), this.circleOptions);
             this.location.addTo(map);
         }
         this.stroke = document.querySelectorAll('path')[document.querySelectorAll('path').length - 1].getAttribute('stroke');
@@ -47,12 +45,11 @@ export const ViewMapClass = class {
 
     updateInfo(props) {
         if (props != undefined) {
-            covidData.Countries.forEach((e) => {
-                if (props.id === e.CountryCode) {
+            countriesCovidData.forEach((e) => {
+                if (props.id === e.countryInfo.iso2) {
                     this.nameCountryHover = e[Model.changeColorCircle()];
                 }
             });
-            State.getCalculatePopulation()
             this.div.innerHTML = `<h4>Statistic</h4>${props
                 ? `<b class="name_country">${props.name}</b><br />${typeof (this.nameCountryHover) === 'number' ? this.nameCountryHover : 'No data'} cases`
                 : 'Hover over a country'}`;
