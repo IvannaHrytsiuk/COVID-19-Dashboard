@@ -19,10 +19,11 @@ function paintSearch(arr, elem) {
     for (let i = 0; i < document.querySelectorAll('.country').length; i += 1) {
         // eslint-disable-next-line no-loop-func
         document.querySelectorAll('.country')[i].addEventListener('click', (e) => {
+            const storage = countriesData.find((element) => element.name === e.target.textContent);
             // eslint-disable-next-line no-use-before-define
-            rememberCountry(e.target.textContent);
+            rememberCountry(storage.alpha2Code);
             elem.innerHTML = '';
-            document.querySelector('.searchCountry').value = '';
+            // document.querySelector('.searchCountry').value = '';
             document.querySelector('.searchCountryTable').value = '';
             const table = new Table();
             table.paintTableHeader();

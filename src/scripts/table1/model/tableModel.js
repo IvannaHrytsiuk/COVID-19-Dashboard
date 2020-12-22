@@ -11,7 +11,8 @@ export class TableModel {
             // у меня были проблемы с получением страны по имени, я тут выбрала по коду получать, тогда немного проще
             // но не везде логика на код прописана, но тут если что я смогу сама
             const country = covidData.Countries.find((element) => element.CountryCode === sessionStorage.getItem('country'));
-            //      const country = covidData.Countries.find((element) => element.Country === sessionStorage.getItem('country'));
+            // console.log(country);
+            // const country = covidData.Countries.find((element) => element.Country === sessionStorage.getItem('country'));
             // eslint-disable-next-line default-case
             switch (elemVal) {
             case 'Total':

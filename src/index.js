@@ -68,7 +68,7 @@ function eventChange(select) {
     document.querySelector('#chooseView').options.selectedIndex = select;
     ModelGraphic.changeColorGraphic();
     Model.changeColorCircle();
-    countryTable.paintTable(document.querySelector('.table2select').options[select].value);
+    countryTable.paintTable(document.querySelector('.table2select').options[select].value, covidData.Countries);
     countriesTableModel.tableConnect(document.getElementById('chooseView').value);
 }
 
@@ -97,13 +97,12 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 State.getCovidData();
                 window.location.reload();
-                console.log('work');
-              // c 1 секундой иногда моргает, я ставила 3 или 5 - не слишком долго, но и при этом моргание не раздражает
-              // пыталась прикрутить интервал, чтобы он обращался без моргания, но тогда при успешном запросе он продолжает обновляться
+            // c 1 секундой иногда моргает, я ставила 3 или 5 - не слишком долго, но и при этом моргание не раздражает
+            // пыталась прикрутить интервал, чтобы он обращался без моргания, но тогда при успешном запросе он продолжает обновляться
             }, 1000);
         } else {
             document.getElementById('chooseView').value = 'Total confirmed';
-            countryTable.paintTable(document.getElementById('chooseView').value);
+            countryTable.paintTable(document.getElementById('chooseView').value, covidData.Countries);
             table.paintTableSelect();
             table.paintTableHeader();
             tableModel.getMoodTable('Total');
