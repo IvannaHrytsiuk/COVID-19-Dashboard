@@ -3,7 +3,9 @@ import './style/keyBoard.scss';
 /* eslint-disable import/prefer-default-export */
 import { Table } from './scripts/table1/view/tablePaint';
 import { CountryTable } from './scripts/table2/view/countryTable';
-import { StateClass, allDayCases, covidData, coordinatesCountry } from './scripts/state';
+import {
+    StateClass, allDayCases, covidData, coordinatesCountry,
+} from './scripts/state';
 // import rememberCountry from './scripts/general/search';
 import './style/style.css';
 import './style/keyBoard.css';
@@ -18,6 +20,7 @@ import { TableModel } from './scripts/table1/model/tableModel';
 import { IfError } from './scripts/general/ifError';
 import { ViewGraphicClass } from './scripts/graphic-block/View/index';
 import { ModelClass } from './scripts/graphic-block/Model/index';
+import { CountriesTableModel } from './scripts/table2/model/countiesTableModel';
 
 import './scripts/table1/controller/table';
 import './scripts/table2/controller/countriesControll';
@@ -30,6 +33,7 @@ const ModelGraphic = new ModelClass();
 const tableModel = new TableModel();
 const Control = new ControllerClass();
 let geojson;
+const countriesTableModel = new CountriesTableModel();
 
 function style() {
     return {
@@ -48,8 +52,12 @@ function onEachFeature(feature, layer) {
         click: (e) => {
             const layers = e.target;
             rememberCountry(layers.feature.properties.id);
+            document.querySelector('.nameCountry').textContent = layers.feature.properties.name;
             State.getDataFromCountry(layers.feature.properties.id);
-            setTimeout(() => { ModelGraphic.changeColorGraphic(); }, 1000);
+            setTimeout(() => {
+                ModelGraphic.changeColorGraphic();
+                tableModel.getMoodTable('Total');
+            }, 1000);
         },
     });
 }
@@ -61,6 +69,7 @@ function eventChange(select) {
     ModelGraphic.changeColorGraphic();
     Model.changeColorCircle();
     countryTable.paintTable(document.querySelector('.table2select').options[select].value);
+    countriesTableModel.tableConnect(document.getElementById('chooseView').value);
 }
 
 document.querySelector('.mapSelect').addEventListener('change', () => {
@@ -73,6 +82,7 @@ document.querySelector('.table2select').addEventListener('change', () => {
     eventChange(document.querySelector('.table2select').options.selectedIndex);
 });
 
+// document.querySelector('#chooseOptions').addEventListener('change', Model.changeColorCircle);
 document.addEventListener('DOMContentLoaded', () => {
     State.getCovidData();
     State.getCountriesData();
@@ -110,4 +120,6 @@ window.addEventListener('load', () => {
     }, 1000);
 });
 
-export { geojson, State, ModelGraphic };
+export {
+    geojson, State, ModelGraphic, Model,
+};

@@ -13,6 +13,7 @@
     "@babel/core": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "@types/codemirror": "0.0.98",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.2.1",
