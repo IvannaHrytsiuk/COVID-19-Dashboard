@@ -50,11 +50,6 @@ document.querySelector('.searchCountryTable').addEventListener('keyup', (e) => {
     paintSearch(newArr, document.querySelector('.countryListTable2'));
 });
 
-document.querySelector('.searchCountryTable').addEventListener('blur', () => {
-    document.querySelector('.keyboard').classList.add('keyboard--hidden');
-    document.querySelector('.countryListTable2').innerHTML = '';
-});
-
 export default function rememberCountry(country) {
     sessionStorage.setItem('country', country);
 }
