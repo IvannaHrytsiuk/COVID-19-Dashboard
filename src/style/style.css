@@ -39,7 +39,15 @@ main > div {
   display: block;
 }
 
-.full_screen {
+.nameCountry {
+  display: inline-block;
+  padding: 0.3rem;
+  margin: 0.3rem;
+  font-size: 1.5rem;
+}
+
+.full_screen,
+.btn_clear_country {
   padding: 0.3rem;
   margin: 1rem;
 }
@@ -48,6 +56,9 @@ main > div {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: tbl;
+}
+
+.container_table1 {
   width: 30vw;
 }
 
@@ -70,12 +81,21 @@ button, select {
   margin: 0.3rem;
 }
 
+button {
+  background-color: transparent;
+  border: 2px solid black;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
 .graphic_block {
   -ms-grid-row: 2;
   -ms-grid-column: 3;
   grid-area: graphic;
   position: relative;
-  width: 30vw;
 }
 
 #map {
