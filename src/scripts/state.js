@@ -11,7 +11,6 @@ export let sumPopualtion = 0;
 export let dataFromCountry;
 export let populationCountry;
 export let country100K;
-export let coordinatesCountry;
 export const StateClass = class {
     async getCovidData() {
         try {
@@ -21,23 +20,8 @@ export const StateClass = class {
             this.data = await this.res.json();
             if (this.data.Message === '') {
                 covidData = this.data;
-                this.getCalculatePopulation();
-                for (this.i = 0; this.i < covidData.Countries.length; this.i += 1) {
-                    this.urlMapCenter = `https://api.mapbox.com/geocoding/v5/mapbox.places/${covidData.Countries[this.i].Slug}.json?types=country&access_token=pk.eyJ1IjoibXlmZW5peDkyIiwiYSI6ImNrYXBpdXhwMTF5NTYzMXA2emY0M3pnd24ifQ.I73eBezMUvPr3OAN-aF1Cg`;
-                    this.resMapCenter = await fetch(this.urlMapCenter);
-                    this.dataMapCenter = await this.resMapCenter.json();
-                    covidData.Countries[this.i].centerCountry = this.dataMapCenter.features[0].center.reverse();
-                    // доделать
-                    // p = new Promise((resolve, reject) => {
-                    //   resolve(fetch(urlMapCenter));
-                    // });
-                }
-                // await Promise.all(Array.from(p)).then((val) => {
-                //   console.log(val);
-                // });
             } else {
-                return;
-                // throw Error(this.data.Message);
+                throw Error(this.data.Message);
             }
         } catch (error) {
             console.log(error);
@@ -52,6 +36,28 @@ export const StateClass = class {
             countriesData = this.data;
             for (let i = 0; i < countriesData.length; i += 1) {
                 sumPopualtion += countriesData[i].population;
+            }
+            for (let i = 0; i < covidData.Countries.length; i += 1) {
+                this.flag = countriesData.find((el) => el.alpha2Code === covidData.Countries[i].CountryCode);
+                covidData.Countries[i].flag = this.flag;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getCovidDataCountries() {
+        try {
+            this.url = 'https://disease.sh/v3/covid-19/countries';
+            this.res = await fetch(this.url);
+            this.data = await this.res.json();
+            for (let i = 0; i < covidData.Countries.length; i += 1) {
+                if (i === 138) {
+                    covidData.Countries[i].centerCountry = [43, 21];
+                } else {
+                    this.center = this.data.find((el) => el.countryInfo.iso2 === covidData.Countries[i].CountryCode);
+                    covidData.Countries[i].centerCountry = [this.center.countryInfo.lat, this.center.countryInfo.long];
+                }
             }
         } catch (error) {
             console.log(error);
