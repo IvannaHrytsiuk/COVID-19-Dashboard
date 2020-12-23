@@ -11,7 +11,7 @@ export const ModelClass = class {
         switch (this.select) {
         case 'Total death':
             this.apiName = 'TotalDeaths';
-            ViewMap.addCircle(this.apiName, 'yellow', 1);
+            ViewMap.addCircle(this.apiName, 'yellow', 1.5);
             break;
         case 'Total confirmed':
             this.apiName = 'TotalConfirmed';
