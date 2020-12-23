@@ -52,7 +52,6 @@ export const ViewMapClass = class {
                     this.nameCountryHover = e[Model.changeColorCircle()];
                 }
             });
-            // State.getCalculatePopulation()
             this.div.innerHTML = `<h4>Statistic</h4>${props
                 ? `<b class="name_country">${props.name}</b><br />${typeof (this.nameCountryHover) === 'number' ? this.nameCountryHover : 'No data'} cases`
                 : 'Hover over a country'}`;
@@ -87,7 +86,7 @@ export const ViewMapClass = class {
     addLegend() {
         this.mas = [];
         this.div = L.DomUtil.create('div', 'info legend');
-        this.grades = ['1', '1,000', '3,000', '20,000', '50,000', '100,000', '250,000', '400,000', '500,000', '1,000,000', '5,000,000'];
+        this.grades = ['1', '1K', '3K', '20K', '50K', '100K', '250K', '400K', '500K', '1M', '5M'];
         this.labels = [];
         for (let i = 0; i < this.grades.length; i += 1) {
             this.from = this.grades[i];
