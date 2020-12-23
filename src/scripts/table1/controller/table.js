@@ -1,6 +1,8 @@
 import { TableModel } from '../model/tableModel';
 import { CountryTable } from '../../table2/view/countryTable';
-import { ModelGraphic, Model, eventChange } from '../../../index';
+import {
+    ModelGraphic, Model, eventChange, State,
+} from '../../../index';
 import { covidData } from '../../state';
 
 document.getElementById('selectMoodShow').addEventListener('change', () => {
@@ -42,7 +44,8 @@ document.querySelector('.btn_clear_country').addEventListener('click', () => {
     sessionStorage.clear();
     document.querySelector('.nameCountry').textContent = '';
     document.querySelector('.btn_clear_country').classList.add('view_btn');
+    State.getTotalEveryDayData();
     setTimeout(() => {
         eventChange(0);
     }, 500);
-})
+});
