@@ -1,6 +1,6 @@
 import { TableModel } from '../model/tableModel';
 import { CountryTable } from '../../table2/view/countryTable';
-import { ModelGraphic, Model } from '../../../index';
+import { ModelGraphic, Model, eventChange } from '../../../index';
 import { covidData } from '../../state';
 
 document.getElementById('selectMoodShow').addEventListener('change', () => {
@@ -37,3 +37,12 @@ document.getElementById('selectMoodShow').addEventListener('change', () => {
         Model.changeColorCircle();
     }
 });
+
+document.querySelector('.btn_clear_country').addEventListener('click', () => {
+    sessionStorage.clear();
+    document.querySelector('.nameCountry').textContent = '';
+    document.querySelector('.btn_clear_country').classList.add('view_btn');
+    setTimeout(() => {
+        eventChange(0);
+    }, 500);
+})
