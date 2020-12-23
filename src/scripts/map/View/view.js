@@ -28,9 +28,9 @@ export const ViewMapClass = class {
         this.circleOptions = {
             color,
             fillColor: color,
-            fillOpacity: 1,
+            fillOpacity: 0.3,
         };
-
+        State.getCalculatePopulation();
         for (let i = 0; i < covidData.Countries.length; i += 1) {
             this.location = L.circle(covidData.Countries[i].centerCountry,
                 (Math.round(covidData.Countries[i][name] / size)), this.circleOptions);
@@ -52,7 +52,7 @@ export const ViewMapClass = class {
                     this.nameCountryHover = e[Model.changeColorCircle()];
                 }
             });
-            State.getCalculatePopulation()
+            // State.getCalculatePopulation()
             this.div.innerHTML = `<h4>Statistic</h4>${props
                 ? `<b class="name_country">${props.name}</b><br />${typeof (this.nameCountryHover) === 'number' ? this.nameCountryHover : 'No data'} cases`
                 : 'Hover over a country'}`;
@@ -93,10 +93,10 @@ export const ViewMapClass = class {
             this.from = this.grades[i];
             this.to = this.grades[i + 1];
             this.labels.push(
-                `<i class="legend-info" style="background-color: red; width: ${5 + i}px; height: ${5 + i}px"></i> ${this.from}${this.to ? `&ndash;${this.to}` : '+'}`,
+                `<p class="legend_items"><i class="legend-info" style="background-color: red; width: ${5 + i}px; height: ${5 + i}px"></i> ${this.from}${this.to ? `&ndash;${this.to}</p>` : '+'}`,
             );
         }
-        this.div.innerHTML = this.labels.join('<br>');
+        this.div.innerHTML = this.labels.join('');
         return this.div;
     }
 };
