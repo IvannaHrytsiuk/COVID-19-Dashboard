@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
     State.getTotalEveryDayData();
     setTimeout(() => { State.getCountriesData(); State.getCovidDataCountries(); }, 1000);
 });
-
 window.addEventListener('load', () => {
     setTimeout(() => {
         if (!covidData || covidData === 'undefined') {
@@ -148,5 +147,5 @@ window.addEventListener('load', () => {
 });
 
 export {
-    geojson, State, ModelGraphic, Model,
+    geojson, State, ModelGraphic, Model, ViewGraphic,
 };
