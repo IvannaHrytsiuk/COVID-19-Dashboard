@@ -3,25 +3,52 @@
   padding: 0;
 }
 
+body {
+  background-color: #9e9a9a;
+}
+
+header, footer {
+  margin: 1rem 0;
+}
+
+h1 {
+  text-align: center;
+}
+
 main {
   display: -ms-grid;
   display: grid;
-  margin: 10px;
-      grid-template-areas: "country map tbl"
- "country map graphic";
+      grid-template-areas: "country map tbl" "country map graphic";
   -ms-grid-rows: min-content;
       grid-template-rows: -webkit-min-content;
       grid-template-rows: min-content;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+main > div {
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+}
+
+.main_full {
+  display: block;
+}
+
+.full_screen {
+  padding: 0.3rem;
+  margin: 1rem;
 }
 
 .container {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: tbl;
-  padding: 0 !important;
 }
 
 .countryBlock {
@@ -38,16 +65,27 @@ main {
   grid-area: map;
 }
 
+button, select {
+  cursor: pointer;
+  margin: 0.3rem;
+}
+
 .graphic_block {
   -ms-grid-row: 2;
   -ms-grid-column: 3;
   grid-area: graphic;
+  position: relative;
 }
 
 #map {
-  width: 500px;
-  height: 300px;
+  width: 45vw;
+  height: 30vw;
   margin: 0 auto;
+}
+
+.map_size {
+  width: 90vw !important;
+  height: 40vw !important;
 }
 
 .info {
@@ -73,23 +111,38 @@ main {
 
 .legend i {
   border-radius: 50%;
-  float: left;
   margin-right: 8px;
   opacity: 0.7;
-  background-color: red;
+}
+
+.legend_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .tumblers {
-  margin: 20px;
+  margin: 0.6rem;
 }
 
-.container {
-  padding: 1rem;
-  margin: 1rem;
+.view_btn {
+  display: none;
+}
+
+.flag {
+  width: 30px;
+  height: 20px;
+}
+
+.view_block {
+  display: none;
 }
 
 .tableBlock {
-  width: 400px;
+  width: 25vw;
   position: relative;
 }
 
@@ -150,6 +203,10 @@ main {
   position: relative;
 }
 
+.tableBlock_size {
+  width: 90vw;
+}
+
 .searchCountry {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/search.png?alt=media&token=511bbf61-1df1-4189-ae3f-ca1dacd4dc52");
   background-position: 10px 12px;
@@ -162,7 +219,7 @@ main {
   margin-bottom: 12px;
 }
 
-.countryList {
+.countryList, .countryListTable2 {
   position: absolute;
   list-style-type: none;
   padding: 0;
@@ -170,19 +227,14 @@ main {
   background-color: gray;
 }
 
-.countryList li {
+.countryList li, .countryListTable2 li {
   cursor: pointer;
 }
 
-.countryList li img {
+.countryList li img, .countryListTable2 li img {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-}
-
-.searchCountryBlock {
-  width: 300px;
-  height: 400px;
 }
 
 .searchCountryBlock .searchCountryTable {
@@ -192,21 +244,23 @@ main {
   font-size: 16px;
 }
 
-.searchCountryBlock div {
+.searchCountryBlock .table2 {
   overflow-x: scroll;
-  width: 300px;
-  height: 370px;
+  height: 30vw;
 }
 
 .countryTable {
-  width: 100%;
-  height: 350px;
+  height: 50vw;
+}
+
+th span {
+  padding: 7px;
 }
 
 .errorShow {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: black;
   position: relative;
 }
 
@@ -226,7 +280,24 @@ main {
   height: 50px;
 }
 
-.errortextBlock p {
+.countryBlock {
+  margin-left: 0.5rem;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: 0;
+}
+
+a {
   color: white;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0 1rem;
 }
 /*# sourceMappingURL=style.css.map */

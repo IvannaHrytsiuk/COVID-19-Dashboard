@@ -3,19 +3,43 @@
   padding: 0;
 }
 
-// body{
-//   background-color: black;
-//   color:white;
-// }
+body {
+  background-color: rgb(158, 154, 154);
+}
+
+header, footer {
+  margin: 1rem 0;
+}
+
+h1 {
+    text-align: center;
+}
 
 main {
   display: grid;
-  margin: 10px;
   grid-template-areas: 
   "country map tbl"
   "country map graphic";
   grid-template-rows: min-content;
   justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+main > div {
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding: 0.5rem;
+    background-color: white;
+}
+
+.main_full {
+  display: block;
+}
+
+.full_screen {
+  padding: 0.3rem;
+  margin: 1rem;
 }
 
 .container {
@@ -30,14 +54,25 @@ main {
   grid-area: map;
 }
 
+button, select {
+  cursor: pointer;
+  margin: 0.3rem;
+}
+
 .graphic_block {
   grid-area: graphic;
+  position: relative;
 }
 
 #map {
-  width: 500px;
-  height: 400px;
+  width: 45vw;
+  height: 30vw;
   margin: 0 auto;
+}
+
+.map_size {
+  width: 90vw !important;
+  height: 40vw !important;
 }
 
 .info { 
@@ -61,22 +96,36 @@ main {
 
 .legend i { 
   border-radius: 50%;
-  float: left; 
   margin-right: 8px; 
   opacity: 0.7;
-  background-color: red;
+
+}
+
+.legend_items {
+  display: flex;
+  align-items: center;
 }
 
 .tumblers {
-  margin: 20px;
+  margin: 0.6rem;
 }
 
-.container{
-    padding: 1rem;
-    margin: 1rem;
+.view_btn {
+  display: none;
 }
+
+.flag {
+  width: 30px;
+    height: 20px;
+}
+
+.view_block {
+  display: none;
+}
+
+
 .tableBlock{
-  width: 500px;
+  width: 25vw;
   position: relative;
 
   img{
@@ -129,6 +178,11 @@ main {
   position: relative;
 }
 
+
+.tableBlock_size {
+  width: 90vw;
+}
+
 .searchCountry {
     background-image: url('https://firebasestorage.googleapis.com/v0/b/snowshop-829da.appspot.com/o/search.png?alt=media&token=511bbf61-1df1-4189-ae3f-ca1dacd4dc52');
     background-position: 10px 12px;
@@ -158,8 +212,6 @@ main {
     }
 }
 .searchCountryBlock {
-    width: 300px;
-    height: 400px;
 
     .searchCountryTable{
         width: 100%;
@@ -167,15 +219,13 @@ main {
         height: 30px;
         font-size: 16px;
     }
-    div{
+    .table2{
         overflow-x: scroll;
-        width: 300px;
-        height: 370px;
+        height: 30vw;
     }
 }
 .countryTable {
-    width: 100%;
-    height: 350px;
+    height: 50vw;
 }
 
 // #selectMoodShow{
@@ -206,4 +256,21 @@ th {
         color:tomato;
         height: 50px;
     }
+}
+
+.countryBlock {
+  margin-left: 0.5rem;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+}
+
+a {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0 1rem;
 }
