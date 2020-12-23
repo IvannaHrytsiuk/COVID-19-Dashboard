@@ -19,7 +19,7 @@ const grayscale = L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
     tileSize: 512,
     zoomOffset: -1,
 });
-const info = L.control();
+const info = L.control({ position: 'bottomleft' });
 const legend = L.control({ position: 'bottomright' });
 
 export {
