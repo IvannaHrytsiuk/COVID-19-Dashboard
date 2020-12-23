@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { myChart } from '../constants/index';
-import { sumPopualtion, populationCountry, allDayCases } from '../../state';
+import { sumPopualtion, populationCountry } from '../../state';
 import { State } from '../../../index';
 
 export const ViewGraphicClass = class {
