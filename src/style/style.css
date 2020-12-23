@@ -263,6 +263,15 @@ button:hover {
   margin-right: 10px;
 }
 
+.countryListTable2 {
+  top: 22%;
+  width: 20vw;
+}
+
+.searchCountryBlock {
+  position: relative;
+}
+
 .searchCountryBlock .searchCountryTable {
   width: 100%;
   outline: none;
