@@ -25,13 +25,12 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 1rem;
   padding: 1rem 0;
 }
 
 main > div {
   border: 1px solid black;
-  margin: 0.5rem;
+  margin: 0.2rem;
   padding: 0.5rem;
   background-color: white;
 }
@@ -49,6 +48,7 @@ main > div {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: tbl;
+  width: 30vw;
 }
 
 .countryBlock {
@@ -75,6 +75,7 @@ button, select {
   -ms-grid-column: 3;
   grid-area: graphic;
   position: relative;
+  width: 30vw;
 }
 
 #map {
@@ -122,6 +123,7 @@ button, select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 0.8em;
 }
 
 .tumblers {
@@ -142,7 +144,6 @@ button, select {
 }
 
 .tableBlock {
-  width: 25vw;
   position: relative;
 }
 
@@ -153,6 +154,11 @@ button, select {
   width: 30px;
   height: 30px;
   z-index: 1;
+  cursor: pointer;
+}
+
+#letter,
+#number {
   cursor: pointer;
 }
 
@@ -294,10 +300,80 @@ footer {
   margin: 0;
 }
 
+.footer_logo img {
+  width: 15%;
+}
+
 a {
   color: white;
   cursor: pointer;
   text-decoration: none;
   padding: 0 1rem;
+}
+
+@media (max-width: 1365px) and (min-width: 1024px) {
+  .legend_items {
+    font-size: 0.6rem;
+  }
+  #map {
+    width: 42vw;
+  }
+  .info {
+    font-size: 0.6rem;
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 450px) {
+  main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .container {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 90vw;
+    margin: 0 auto;
+  }
+  .graphic_block {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    width: 90vw;
+    margin: 0.5rem auto;
+  }
+  .countryBlock {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+    width: 90vw;
+    margin: 0 auto;
+  }
+  .map_block {
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+    width: 90vw;
+    margin: 0.5rem auto;
+  }
+  .map_block #map {
+    width: 80vw;
+    height: 50vw;
+  }
+  .leaflet-control {
+    margin-bottom: 0 !important;
+  }
+  .info {
+    margin-bottom: 0.2rem !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */
