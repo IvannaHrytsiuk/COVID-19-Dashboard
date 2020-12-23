@@ -5,11 +5,12 @@ const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'line',
     options: {
+        responsive: true,
         scales: {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    callback: (value) => `${value / 10e6}M`,
+                    callback: (value) => `${+(value / 10e3).toFixed(9)}K`,
                 },
             }],
         },
