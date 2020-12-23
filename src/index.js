@@ -4,7 +4,7 @@ import './style/keyBoard.scss';
 import { Table } from './scripts/table1/view/tablePaint';
 import { CountryTable } from './scripts/table2/view/countryTable';
 import {
-    StateClass, allDayCases, covidData, coordinatesCountry,
+    StateClass, allDayCases, covidData,
 } from './scripts/state';
 // import rememberCountry from './scripts/general/search';
 import './style/style.css';
@@ -45,6 +45,38 @@ function style() {
     };
 }
 
+document.querySelectorAll('.full_screen').forEach((el) => el.addEventListener('click', (e) => {
+    document.querySelector('main').classList.toggle('main_full');
+    if (e.target.closest('div').classList.contains('graphic_block')) {
+        document.querySelector('.container').classList.toggle('view_block');
+        document.querySelector('.countryBlock').classList.toggle('view_block');
+        document.querySelector('.map_block').classList.toggle('view_block');
+        document.getElementById('myChart').style.width = `${564}px`;
+        document.getElementById('myChart').height = 282;
+        document.getElementById('myChart').style.width = `${282}px`;
+        document.getElementById('myChart').height = 282;
+    }
+    if (e.target.closest('div').classList.contains('countryBlock')) {
+        document.querySelector('.graphic_block').classList.toggle('view_block');
+        document.querySelector('.container').classList.toggle('view_block');
+        document.querySelector('.map_block').classList.toggle('view_block');
+    }
+    if (e.target.closest('div').classList.contains('map_block')) {
+        document.querySelector('.container').classList.toggle('view_block');
+        document.querySelector('.countryBlock').classList.toggle('view_block');
+        document.querySelector('.graphic_block').classList.toggle('view_block');
+
+        document.getElementById('map').classList.toggle('map_size');
+        setTimeout(() => { map.invalidateSize(); }, 400);
+    }
+    if (e.target.closest('div').classList.contains('container')) {
+        document.querySelector('.graphic_block').classList.toggle('view_block');
+        document.querySelector('.countryBlock').classList.toggle('view_block');
+        document.querySelector('.map_block').classList.toggle('view_block');
+        document.querySelector('.tableBlock').classList.toggle('tableBlock_size');
+    }
+}));
+
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: ViewMap.highlightFeature,
@@ -53,7 +85,9 @@ function onEachFeature(feature, layer) {
             const layers = e.target;
             rememberCountry(layers.feature.properties.id);
             document.querySelector('.nameCountry').textContent = layers.feature.properties.name;
+            document.querySelector('.btn_clear_country').classList.remove('view_btn');
             State.getDataFromCountry(layers.feature.properties.id);
+            eventChange(0);
             setTimeout(() => {
                 ModelGraphic.changeColorGraphic();
                 tableModel.getMoodTable('Total');
@@ -62,7 +96,7 @@ function onEachFeature(feature, layer) {
     });
 }
 
-function eventChange(select) {
+export function eventChange(select) {
     document.querySelector('.mapSelect').options.selectedIndex = select;
     document.querySelector('.graphic').options.selectedIndex = select;
     document.querySelector('#chooseView').options.selectedIndex = select;
@@ -85,10 +119,11 @@ document.querySelector('.table2select').addEventListener('change', () => {
 // document.querySelector('#chooseOptions').addEventListener('change', Model.changeColorCircle);
 document.addEventListener('DOMContentLoaded', () => {
     State.getCovidData();
-    State.getCountriesData();
+    // State.getCountriesData();
     State.getTotalEveryDayData();
+    setTimeout(() => { State.getCountriesData(); State.getCovidDataCountries(); }, 1000);
 });
-let a;
+
 window.addEventListener('load', () => {
     setTimeout(() => {
         if (!covidData || covidData === 'undefined') {
@@ -97,10 +132,9 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 State.getCovidData();
                 window.location.reload();
-            // c 1 секундой иногда моргает, я ставила 3 или 5 - не слишком долго, но и при этом моргание не раздражает
-            // пыталась прикрутить интервал, чтобы он обращался без моргания, но тогда при успешном запросе он продолжает обновляться
-            }, 1000);
+            }, 3000);
         } else {
+            sessionStorage.clear();
             document.getElementById('chooseView').value = 'Total confirmed';
             countryTable.paintTable(document.getElementById('chooseView').value, covidData.Countries);
             table.paintTableSelect();
@@ -109,12 +143,12 @@ window.addEventListener('load', () => {
             ViewMap.init();
             setTimeout(() => {
                 ViewMap.addCircle('TotalConfirmed', 'red', 40);
-                ViewGraphic.init('Total Cases', allDayCases, 'red');
+                ViewGraphic.init('Total confirmed', allDayCases, 'red');
                 geojson = L.geoJson(countryData, {
                     style,
                     onEachFeature,
                 }).addTo(map);
-            }, 1000);
+            }, 2000);
         }
     }, 1000);
 });
