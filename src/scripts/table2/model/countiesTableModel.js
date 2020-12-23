@@ -89,6 +89,36 @@ export class CountriesTableModel {
                 const newArr6 = covidData.Countries.sort((a, b) => b.NewRecovered - a.NewRecovered);
                 countryTable.paintTable(document.getElementById('chooseView').value, newArr6);
                 break;
+            case 'Total confirmed 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr7 = covidData.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr7);
+                break;
+            case 'Total death 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr8 = covidData.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr8);
+                break;
+            case 'Total recovered 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr9 = covidData.Countries.sort((a, b) => b.TotalRecovered - a.TotalRecovered);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr9);
+                break;
+            case 'New confirmed 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr10 = covidData.Countries.sort((a, b) => b.NewConfirmed - a.NewConfirmed);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr10);
+                break;
+            case 'New death 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr11 = covidData.Countries.sort((a, b) => b.NewDeaths - a.NewDeaths);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr11);
+                break;
+            case 'New recovered 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr12 = covidData.Countries.sort((a, b) => b.NewRecovered - a.NewRecovered);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr12);
+                break;
             }
         } else {
         // eslint-disable-next-line default-case
@@ -122,6 +152,36 @@ export class CountriesTableModel {
                 // eslint-disable-next-line no-case-declarations
                 const newArr6 = covidData.Countries.sort((a, b) => a.NewRecovered - b.NewRecovered);
                 countryTable.paintTable(document.getElementById('chooseView').value, newArr6);
+                break;
+            case 'Total confirmed 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr7 = covidData.Countries.sort((a, b) => a.TotalConfirmed - b.TotalConfirmed);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr7);
+                break;
+            case 'Total death 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr8 = covidData.Countries.sort((a, b) => a.TotalDeaths - b.TotalDeaths);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr8);
+                break;
+            case 'Total recovered 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr9 = covidData.Countries.sort((a, b) => a.TotalRecovered - b.TotalRecovered);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr9);
+                break;
+            case 'New confirmed 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr10 = covidData.Countries.sort((a, b) => a.NewConfirmed - b.NewConfirmed);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr10);
+                break;
+            case 'New death 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr11 = covidData.Countries.sort((a, b) => a.NewDeaths - b.NewDeaths);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr11);
+                break;
+            case 'New recovered 100K':
+                // eslint-disable-next-line no-case-declarations
+                const newArr12 = covidData.Countries.sort((a, b) => a.NewRecovered - b.NewRecovered);
+                countryTable.paintTable(document.getElementById('chooseView').value, newArr12);
                 break;
             }
         }
