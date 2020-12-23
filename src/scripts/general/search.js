@@ -2,6 +2,7 @@ import { countriesData } from '../state';
 import { Table } from '../table1/view/tablePaint';
 import { TableModel } from '../table1/model/tableModel';
 // import { clickedElement } from '../keyBoard';
+import { eventChange, ModelGraphic, State } from '../../index';
 
 // закомментила в index.html верхний поиск и тут функции, которые к нему обращаются, чтобы не ломалось
 // document.querySelector('.searchCountry').addEventListener('focus', () => {
@@ -20,6 +21,15 @@ function paintSearch(arr, elem) {
         // eslint-disable-next-line no-loop-func
         document.querySelectorAll('.country')[i].addEventListener('click', (e) => {
             const storage = countriesData.find((element) => element.name === e.target.textContent);
+            document.querySelector('.nameCountry').textContent = storage.name;
+            document.querySelector('.btn_clear_country').classList.remove('view_btn');
+            eventChange(0);
+            State.getDataFromCountry(storage.alpha2Code);
+            document.querySelector('.keyboard').classList.add('keyboard--hidden');
+            setTimeout(() => {
+                ModelGraphic.changeColorGraphic();
+                tableModel.getMoodTable('Total');
+            }, 1000);
             // eslint-disable-next-line no-use-before-define
             rememberCountry(storage.alpha2Code);
             elem.innerHTML = '';
@@ -58,6 +68,11 @@ document.querySelector('.searchCountryTable').addEventListener('keyup', (e) => {
         }
     }
     paintSearch(newArr, document.querySelector('.countryListTable2'));
+});
+
+document.querySelector('.searchCountryTable').addEventListener('blur', () => {
+    document.querySelector('.keyboard').classList.add('keyboard--hidden');
+    document.querySelector('.countryListTable2').innerHTML = '';
 });
 
 export default function rememberCountry(country) {
