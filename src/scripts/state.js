@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-return-assign */
 /* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-await-in-loop */
 import regeneratorRuntime from 'regenerator-runtime';
