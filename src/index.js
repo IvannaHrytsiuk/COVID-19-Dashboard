@@ -6,16 +6,13 @@ import { CountryTable } from './scripts/table2/view/countryTable';
 import {
     StateClass, allDayCases, covidData,
 } from './scripts/state';
-// import rememberCountry from './scripts/general/search';
 import './style/style.css';
 import './style/keyBoard.css';
 import { countryData } from './scripts/map/constants/Country';
 import { map, ViewMap, Model } from './scripts/map/constants/index';
 import { ControllerClass } from './scripts/map/Controller/index';
-import { ControllerGraphicClass } from './scripts/graphic-block/Controller/index';
 import rememberCountry from './scripts/general/search';
 import './scripts/keyBoard';
-// import './scripts/table1/controller/table';
 import { TableModel } from './scripts/table1/model/tableModel';
 import { IfError } from './scripts/general/ifError';
 import { ViewGraphicClass } from './scripts/graphic-block/View/index';
@@ -31,9 +28,8 @@ const countryTable = new CountryTable();
 const table = new Table();
 const ModelGraphic = new ModelClass();
 const tableModel = new TableModel();
-const Control = new ControllerClass();
-let geojson;
 const countriesTableModel = new CountriesTableModel();
+let geojson;
 
 function style() {
     return {
@@ -116,10 +112,8 @@ document.querySelector('.table2select').addEventListener('change', () => {
     eventChange(document.querySelector('.table2select').options.selectedIndex);
 });
 
-// document.querySelector('#chooseOptions').addEventListener('change', Model.changeColorCircle);
 document.addEventListener('DOMContentLoaded', () => {
     State.getCovidData();
-    // State.getCountriesData();
     State.getTotalEveryDayData();
     setTimeout(() => { State.getCountriesData(); State.getCovidDataCountries(); }, 1000);
 });
